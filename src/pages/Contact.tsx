@@ -298,7 +298,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center space-x-2"
               >
-                <WhatsAppIcon className="h-4 w-4 text-green-700" />
+                <WhatsAppIcon className="h-4 w-4 text-white" />
                 <span>WhatsApp Now</span>
               </a>
             </div>
