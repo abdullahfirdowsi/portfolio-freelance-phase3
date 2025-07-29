@@ -7,6 +7,14 @@ interface SubmitStatus {
   message: string;
 }
 
+interface FormErrors {
+  name?: string;
+  email?: string;
+  phone?: string;
+  projectType?: string;
+  message?: string;
+}
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -17,17 +25,100 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus | null>(null);
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
+
+  const validateForm = (data: typeof formData): FormErrors => {
+    const errors: FormErrors = {};
+
+    // Name validation
+    if (!data.name.trim()) {
+      errors.name = 'Full name is required';
+    } else if (data.name.trim().length < 2) {
+      errors.name = 'Name must be at least 2 characters long';
+    } else if (data.name.trim().length > 50) {
+      errors.name = 'Name cannot exceed 50 characters';
+    }
+
+    // Email validation
+    if (!data.email.trim()) {
+      errors.email = 'Email address is required';
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email.trim())) {
+        errors.email = 'Please enter a valid email address';
+      }
+    }
+
+    // Phone validation
+    if (!data.phone.trim()) {
+      errors.phone = 'Phone number is required';
+    } else {
+      // Remove all non-digit characters for validation
+      const phoneDigits = data.phone.replace(/\D/g, '');
+      if (phoneDigits.length < 10) {
+        errors.phone = 'Phone number must be at least 10 digits';
+      } else if (phoneDigits.length > 15) {
+        errors.phone = 'Phone number cannot exceed 15 digits';
+      }
+      // Additional format validation for Indian numbers
+      const phoneRegex = /^[\+]?[1-9][\d\s\-\(\)]{8,15}$/;
+      if (!phoneRegex.test(data.phone.trim())) {
+        errors.phone = 'Please enter a valid phone number';
+      }
+    }
+
+    // Project type validation
+    if (!data.projectType) {
+      errors.projectType = 'Please select a project type';
+    }
+
+    // Message validation (optional but if provided, should have minimum length)
+    if (data.message.trim() && data.message.trim().length < 10) {
+      errors.message = 'Project details should be at least 10 characters if provided';
+    } else if (data.message.trim().length > 1000) {
+      errors.message = 'Project details cannot exceed 1000 characters';
+    }
+
+    return errors;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+
+    // Clear specific field error when user starts typing
+    if (formErrors[name as keyof FormErrors]) {
+      setFormErrors({
+        ...formErrors,
+        [name]: undefined
+      });
+    }
+
+    // Clear submit status when user makes changes
+    if (submitStatus) {
+      setSubmitStatus(null);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Validate form
+    const errors = validateForm(formData);
+    setFormErrors(errors);
+
+    // If there are validation errors, don't submit
+    if (Object.keys(errors).length > 0) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please fix the errors below before submitting.'
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
     
@@ -47,6 +138,7 @@ const Contact = () => {
       const result = await response.json();
       setSubmitStatus({ type: 'success', message: result.message || 'Thank you for your message! I will get back to you soon.' });
       setFormData({ name: '', email: '', phone: '', projectType: '', message: '' });
+      setFormErrors({});
     } catch (err) {
       console.error('Error submitting contact form:', err);
       setSubmitStatus({ 
@@ -161,9 +253,17 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all ${
+                    formErrors.name ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                  }`}
                   placeholder="Enter your full name"
                 />
+                {formErrors.name && (
+                  <p className="mt-1 text-sm text-red-600 flex items-center">
+                    <span className="mr-1">⚠</span>
+                    {formErrors.name}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -177,9 +277,17 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all ${
+                    formErrors.email ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                  }`}
                   placeholder="Enter your email address"
                 />
+                {formErrors.email && (
+                  <p className="mt-1 text-sm text-red-600 flex items-center">
+                    <span className="mr-1">⚠</span>
+                    {formErrors.email}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -193,9 +301,17 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all ${
+                    formErrors.phone ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                  }`}
                   placeholder="Enter your phone number"
                 />
+                {formErrors.phone && (
+                  <p className="mt-1 text-sm text-red-600 flex items-center">
+                    <span className="mr-1">⚠</span>
+                    {formErrors.phone}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -208,7 +324,9 @@ const Contact = () => {
                   value={formData.projectType}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all ${
+                    formErrors.projectType ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                  }`}
                 >
                   <option value="">Select project type</option>
                   <option value="mini">Mini Project</option>
@@ -219,6 +337,12 @@ const Contact = () => {
                   <option value="data-science">Data Science</option>
                   <option value="custom">Custom Project</option>
                 </select>
+                {formErrors.projectType && (
+                  <p className="mt-1 text-sm text-red-600 flex items-center">
+                    <span className="mr-1">⚠</span>
+                    {formErrors.projectType}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -231,9 +355,17 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none ${
+                    formErrors.message ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                  }`}
                   placeholder="Describe your project requirements, deadline, and any specific needs..."
                 ></textarea>
+                {formErrors.message && (
+                  <p className="mt-1 text-sm text-red-600 flex items-center">
+                    <span className="mr-1">⚠</span>
+                    {formErrors.message}
+                  </p>
+                )}
               </div>
 
               <button
