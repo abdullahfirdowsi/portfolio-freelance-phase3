@@ -60,6 +60,14 @@ class ApiService {
     return this.handleResponse(response);
   }
 
+  // Admin endpoints - Dashboard
+  async getDashboardStats(): Promise<ApiResponse> {
+    const response = await fetch(`${API_BASE_URL}/admin/dashboard-stats`, {
+      headers: this.getAuthHeaders(),
+    });
+    return this.handleResponse(response);
+  }
+
   // Admin endpoints - Projects
   async createProject(data: any): Promise<ApiResponse> {
     const response = await fetch(`${API_BASE_URL}/admin/projects`, {
