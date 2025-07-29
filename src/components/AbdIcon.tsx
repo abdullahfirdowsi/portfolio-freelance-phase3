@@ -21,7 +21,7 @@ const AbdIcon: React.FC<AbdIconProps> = ({ className = "h-6 w-6", ...props }) =>
         y="45" 
         fontFamily="Fira Code, monospace" 
         fontSize="36" 
-        fill="#2563eb"
+        fill="currentColor"
       >
         &lt;abd /&gt;
       </text>

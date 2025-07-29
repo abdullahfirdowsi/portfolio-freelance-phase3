@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <AbdIcon className="h-8 w-16" />
+            <AbdIcon className="h-8 w-16 text-primary-600" />
             <div>
               <h1 className="text-lg sm:text-xl font-bold text-gray-900">Abdullah Firdowsi</h1>
               <p className="text-xs sm:text-sm text-gray-600">Project Development</p>
