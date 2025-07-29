@@ -92,12 +92,13 @@ router.get('/pricing', async (req, res) => {
 // @desc    Submit contact form
 // @access  Public
 router.post('/contact', async (req, res) => {
-  const { name, email, projectType, message } = req.body;
+  const { name, email, phone, projectType, message } = req.body;
 
   try {
     const newContact = new Contact({
       name,
       email,
+      phone,
       projectType,
       message,
     });

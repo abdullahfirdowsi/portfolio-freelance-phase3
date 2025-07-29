@@ -11,6 +11,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     projectType: '',
     message: ''
   });
@@ -45,7 +46,7 @@ const Contact = () => {
       
       const result = await response.json();
       setSubmitStatus({ type: 'success', message: result.message || 'Thank you for your message! I will get back to you soon.' });
-      setFormData({ name: '', email: '', projectType: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', projectType: '', message: '' });
     } catch (err) {
       console.error('Error submitting contact form:', err);
       setSubmitStatus({ 
@@ -242,6 +243,21 @@ const Contact = () => {
 
           {/* Contact Information */}
           <div className="space-y-8">
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                placeholder="Enter your phone number (optional)"
+              />
+            </div>
+
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
               <div className="space-y-4">
