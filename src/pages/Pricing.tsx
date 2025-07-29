@@ -177,6 +177,7 @@ const Pricing = () => {
             </div>
           ))}
         </div>
+        </div>
 
         {/* Add-ons Section */}
         <div className="mb-16">
