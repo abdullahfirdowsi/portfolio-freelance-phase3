@@ -24,6 +24,7 @@ const PricingFormPage = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [fetchingPricing, setFetchingPricing] = useState(false);
 
   useEffect(() => {
     if (isEditing && id) {
@@ -33,24 +34,24 @@ const PricingFormPage = () => {
 
   const fetchPricing = async (pricingId: string) => {
     try {
-      const response = await api.getPricing();
+      setFetchingPricing(true);
+      setError('');
+      const response = await api.getPricingById(pricingId);
       if (response.success) {
-        const pricing = response.data?.find((p: any) => p._id === pricingId);
-        if (pricing) {
-          setFormData({
-            name: pricing.name || '',
-            price: pricing.price || '',
-            description: pricing.description || '',
-            features: pricing.features || [''],
-            popular: pricing.popular || false,
-            category: pricing.category || '',
-            deliveryTime: pricing.deliveryTime || '',
-            revisions: pricing.revisions || 1,
-            support: pricing.support || 'standard',
-            isActive: pricing.isActive !== undefined ? pricing.isActive : true,
-            order: pricing.order || 0
-          });
-        }
+        const pricing = response.data;
+        setFormData({
+          name: pricing.name || '',
+          price: pricing.price || '',
+          description: pricing.description || '',
+          features: pricing.features || [''],
+          popular: pricing.popular || false,
+          category: pricing.category || '',
+          deliveryTime: pricing.deliveryTime || '',
+          revisions: pricing.revisions || 1,
+          support: pricing.support || 'standard',
+          isActive: pricing.isActive !== undefined ? pricing.isActive : true,
+          order: pricing.order || 0
+        });
       }
     } catch (err) {
       setError('Failed to fetch pricing data');
@@ -110,16 +111,41 @@ const PricingFormPage = () => {
         navigate('/admin/pricing');
         showSuccess(isEditing ? 'Pricing tier updated successfully' : 'Pricing tier created successfully');
       } else {
-        setError(response.error || 'Failed to save pricing tier');
+        setError(response.error || 'Failed to fetch pricing data');
         showError(response.error || 'Failed to save pricing tier');
       }
     } catch (err) {
-      setError('Network error occurred');
+      setError('Network error occurred while fetching pricing data');
+    } finally {
+      setFetchingPricing(false);
       showError('Network error occurred');
     } finally {
       setLoading(false);
     }
   };
+
+  // Show loading state while fetching pricing data
+  if (fetchingPricing) {
+    return (
+      <div className="max-w-4xl mx-auto space-y-6">
+        <div className="flex items-center space-x-4">
+          <button
+            onClick={() => navigate('/admin/pricing')}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </button>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Loading Pricing Tier...</h1>
+            <p className="text-gray-600 mt-2">Fetching pricing data</p>
+          </div>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">

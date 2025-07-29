@@ -182,6 +182,25 @@ router.post('/upload', auth, upload.single('image'), async (req, res) => {
 });
 
 // Project Routes
+// @route   GET /api/admin/projects/:id
+// @desc    Get a single project by ID
+// @access  Private (Admin)
+router.get('/projects/:id', auth, async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+    res.json(project);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+    res.status(500).send('Server error');
+  }
+});
+
 // @route   POST /api/admin/projects
 // @desc    Create a new project
 // @access  Private (Admin)
@@ -231,6 +250,25 @@ router.delete('/projects/:id', auth, async (req, res) => {
 });
 
 // Pricing Routes
+// @route   GET /api/admin/pricing/:id
+// @desc    Get a single pricing tier by ID
+// @access  Private (Admin)
+router.get('/pricing/:id', auth, async (req, res) => {
+  try {
+    const pricing = await Pricing.findById(req.params.id);
+    if (!pricing) {
+      return res.status(404).json({ message: 'Pricing tier not found' });
+    }
+    res.json(pricing);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ message: 'Pricing tier not found' });
+    }
+    res.status(500).send('Server error');
+  }
+});
+
 // @route   POST /api/admin/pricing
 // @desc    Create a new pricing tier
 // @access  Private (Admin)

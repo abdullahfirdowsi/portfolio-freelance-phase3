@@ -52,6 +52,13 @@ class ApiService {
     return this.handleResponse(response);
   }
 
+  async getProjectById(id: string): Promise<ApiResponse> {
+    const response = await fetch(`${API_BASE_URL}/admin/projects/${id}`, {
+      headers: this.getAuthHeaders(),
+    });
+    return this.handleResponse(response);
+  }
+
   async getPricing(params?: { search?: string; page?: number; limit?: number }): Promise<ApiResponse> {
     const queryParams = new URLSearchParams();
     if (params?.search) queryParams.append('search', params.search);
@@ -60,6 +67,13 @@ class ApiService {
     
     const url = `${API_BASE_URL}/pricing${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
     const response = await fetch(url);
+    return this.handleResponse(response);
+  }
+
+  async getPricingById(id: string): Promise<ApiResponse> {
+    const response = await fetch(`${API_BASE_URL}/admin/pricing/${id}`, {
+      headers: this.getAuthHeaders(),
+    });
     return this.handleResponse(response);
   }
 

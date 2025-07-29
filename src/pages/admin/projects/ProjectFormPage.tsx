@@ -27,6 +27,7 @@ const ProjectFormPage = () => {
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
+  const [fetchingProject, setFetchingProject] = useState(false);
 
   useEffect(() => {
     if (isEditing && id) {
@@ -36,29 +37,31 @@ const ProjectFormPage = () => {
 
   const fetchProject = async (projectId: string) => {
     try {
-      const response = await api.getProjects();
+      setFetchingProject(true);
+      setError('');
+      const response = await api.getProjectById(projectId);
       if (response.success) {
-        const project = response.data?.find((p: any) => p._id === projectId);
-        if (project) {
-          setFormData({
-            title: project.title || '',
-            category: project.category || '',
-            description: project.description || '',
-            techStack: project.techStack || [''],
-            price: project.price || '',
-            image: project.image || '',
-            features: project.features || [''],
-            status: project.status || 'active',
-            difficulty: project.difficulty || 'intermediate',
-            duration: project.duration || '',
-            githubUrl: project.githubUrl || '',
-            liveUrl: project.liveUrl || '',
-            tags: project.tags || ['']
-          });
-        }
+        const project = response.data;
+        setFormData({
+          title: project.title || '',
+          category: project.category || '',
+          description: project.description || '',
+          techStack: project.techStack || [''],
+          price: project.price || '',
+          image: project.image || '',
+          features: project.features || [''],
+          status: project.status || 'active',
+          difficulty: project.difficulty || 'intermediate',
+          duration: project.duration || '',
+          githubUrl: project.githubUrl || '',
+          liveUrl: project.liveUrl || '',
+          tags: project.tags || ['']
+        setError(response.error || 'Failed to fetch project data');
       }
     } catch (err) {
-      setError('Failed to fetch project data');
+      setError('Network error occurred while fetching project data');
+    } finally {
+      setFetchingProject(false);
     }
   };
 
@@ -148,6 +151,29 @@ const ProjectFormPage = () => {
       setLoading(false);
     }
   };
+
+  // Show loading state while fetching project data
+  if (fetchingProject) {
+    return (
+      <div className="max-w-4xl mx-auto space-y-6">
+        <div className="flex items-center space-x-4">
+          <button
+            onClick={() => navigate('/admin/projects')}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </button>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Loading Project...</h1>
+            <p className="text-gray-600 mt-2">Fetching project data</p>
+          </div>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
