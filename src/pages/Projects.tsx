@@ -89,32 +89,6 @@ const Projects = () => {
             }
           }
         });
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching projects:', err);
-        // Fallback to sample data if API fails
-        setProjects([
-          {
-            _id: 1,
-            title: "Amazon E-Commerce Product Quality Analysis",
-            category: "AI/ML",
-            description: "Interactive website leveraging customer reviews and real-time product data to forecast Amazon product quality using LSTM model.",
-            techStack: ["Python", "LSTM", "Sentiment Analysis", "Scraper API", "Render"],
-            price: "₹12,000",
-            image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=400",
-            features: ["Real-time data scraping", "Sentiment analysis", "LSTM prediction", "Interactive dashboard"]
-          },
-          {
-            _id: 2,
-            title: "LeafCare - Cassava Plant Disease Detection",
-            category: "AI/ML",
-            description: "Deep learning approach using CNN and EfficientNetB0 model to classify diseases in cassava leaf images with 96% accuracy.",
-            techStack: ["Python", "CNN", "EfficientNetB0", "Streamlit", "Image Processing"],
-            price: "₹10,000",
-            image: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=400",
-            features: ["96% accuracy", "CNN implementation", "Streamlit interface", "Image classification"]
-          }
-        ]);
       } finally {
         setLoading(false);
       }
