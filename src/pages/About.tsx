@@ -1,4 +1,3 @@
-import React from 'react';
 import { GraduationCap, Award, Code, Github, Linkedin, Mail, MapPin, Phone, ExternalLink } from 'lucide-react';
 
 const About = () => {

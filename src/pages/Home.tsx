@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowRight, CheckCircle, Star, Code, Database, Brain, Globe, MessageCircle, Eye } from 'lucide-react';
 
 const Home = () => {

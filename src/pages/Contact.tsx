@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Mail, Phone, MapPin, MessageCircle, Send, Clock, HelpCircle } from 'lucide-react';
+
+interface SubmitStatus {
+  type: 'success' | 'error';
+  message: string;
+}
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +14,7 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({

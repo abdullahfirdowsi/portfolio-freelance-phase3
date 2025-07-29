@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Check, MessageCircle, Clock, Shield, Zap } from 'lucide-react';
 
+interface PricingTier {
+  _id: number;
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  popular: boolean;
+  color: string;
+}
+
 const Pricing = () => {
-  const [pricingTiers, setPricingTiers] = useState([]);
+  const [pricingTiers, setPricingTiers] = useState<PricingTier[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   // Fetch pricing from backend
   useEffect(() => {
@@ -19,7 +29,8 @@ const Pricing = () => {
         setPricingTiers(data);
         setError(null);
       } catch (err) {
-        setError(err.message);
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred';
+        setError(errorMessage);
         console.error('Error fetching pricing:', err);
         // Fallback to sample data if API fails
         setPricingTiers([
