@@ -22,7 +22,13 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <h1 className="text-xl font-bold text-gray-900">Abdullah Firdowsi</h1>
+            <div className="bg-primary-600 p-2 rounded-lg">
+              <Code className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-gray-900">Abdullah Firdowsi</h1>
+              <p className="text-sm text-gray-600">Project Development</p>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
