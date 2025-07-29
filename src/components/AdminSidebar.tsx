@@ -7,7 +7,8 @@ import {
   MessageSquare, 
   LogOut,
   User,
-  Code
+  Code,
+  X
 } from 'lucide-react';
 
 interface AdminSidebarProps {

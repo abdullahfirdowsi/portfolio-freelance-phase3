@@ -64,7 +64,7 @@ const Home = () => {
     <div className="animate-fade-in">
       {/* Hero Section */}
       <section className="bg-white section-padding">
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-slide-up">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -74,7 +74,7 @@ const Home = () => {
               <p className="text-xl text-gray-600 mb-8">
                 Mini, Major, IEEE Papers — Quick delivery with documentation.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
                 <Link to="/projects" className="btn-primary flex items-center justify-center space-x-2">
                   <Eye className="h-5 w-5" />
                   <span>View Projects</span>
@@ -119,7 +119,7 @@ const Home = () => {
 
       {/* Services Section */}
       <section className="bg-gray-50 section-padding">
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               My Core Services
@@ -151,7 +151,7 @@ const Home = () => {
 
       {/* Why Choose Me Section */}
       <section className="bg-white section-padding">
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -198,7 +198,7 @@ const Home = () => {
 
       {/* Testimonials Section */}
       <section className="bg-gray-50 section-padding">
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               What Students Say
@@ -235,7 +235,7 @@ const Home = () => {
 
       {/* CTA Section */}
       <section className="bg-primary-600 text-white section-padding">
-        <div className="container-max text-center">
+        <div className="container-max px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Get Started?
           </h2>
