@@ -209,11 +209,7 @@ const Pricing = () => {
                   href={`https://wa.me/919943980796?text=Hi%20Abdullah,%20I'm%20interested%20in%20${tier.name}%20package.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full flex items-center justify-center space-x-2 py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
-                    tier.popular
-                      ? 'bg-primary-600 hover:bg-primary-700 text-white'
-                      : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
-                  }`}
+                  className="w-full flex items-center justify-center space-x-2 py-3 px-6 rounded-lg font-semibold transition-all duration-300 bg-green-500 hover:bg-green-600 text-white"
                 >
                   <WhatsAppIcon className="h-5 w-5" />
                   <span>Get Started</span>
@@ -288,7 +284,7 @@ const Pricing = () => {
                 href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I%20need%20a%20custom%20quote%20for%20my%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 <span>Get Custom Quote</span>
