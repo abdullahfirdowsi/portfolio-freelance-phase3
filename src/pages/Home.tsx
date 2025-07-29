@@ -49,7 +49,7 @@ const Home = () => {
       name: "Sheik Mohamed",
       course: "B.Sc., CS 2nd Year",
       text: "Delivered my mini project on time. Helped me understand the code for viva preparation.",
-      rating: 4
+      rating: 5
     },
     {
       name: "Rahul A",
@@ -67,11 +67,11 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-slide-up">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                College Projects Done Right —{' '}
-                <span className="text-primary-600">Fast, Custom, and Viva-Ready</span>
+                Get Your{' '}
+                <span className="text-primary-600">College Projects Done</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Mini, Major, IEEE, Reports, PPT — everything covered by an experienced AI & Data Science expert.
+                Mini, Major, IEEE Papers — Quick delivery with documentation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/projects" className="btn-primary flex items-center justify-center space-x-2">
@@ -98,7 +98,7 @@ const Home = () => {
                     <div className="text-gray-600">Projects Completed</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-primary-600">4.0/5</div>
+                    <div className="text-3xl font-bold text-primary-600">4/5</div>
                     <div className="text-gray-600">Client Rating</div>
                   </div>
                   <div>
@@ -211,10 +211,12 @@ const Home = () => {
               <div key={index} className="card p-6">
                 <div className="flex items-center mb-4">
                   <div className="flex">
-                    {[...Array(4)].map((_, i) => (
+                    {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                     ))}
-                    <Star className="h-5 w-5 text-gray-300" />
+                    {[...Array(5 - testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-gray-300" />
+                    ))}
                   </div>
                 </div>
                 <p className="text-gray-700 mb-4 italic">
