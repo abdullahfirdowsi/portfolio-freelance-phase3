@@ -8,31 +8,42 @@ interface AbdIconProps {
 const AbdIcon: React.FC<AbdIconProps> = ({ className = "h-6 w-6", ...props }) => {
   return (
     <svg 
-      width="100" 
-      height="40" 
-      viewBox="0 0 100 40" 
+      width="120" 
+      height="50" 
+      viewBox="0 0 120 50" 
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       {...props}
     >
-      {/* Background for better contrast */}
+      {/* Border rectangle */}
       <rect 
-        x="2" 
-        y="8" 
-        width="96" 
-        height="24" 
+        x="5" 
+        y="5" 
+        width="110" 
+        height="40" 
+        rx="6" 
+        fill="none"
+        stroke="currentColor" 
+        strokeWidth="2"
+      />
+      {/* Background fill */}
+      <rect 
+        x="7" 
+        y="7" 
+        width="106" 
+        height="36" 
         rx="4" 
         fill="currentColor" 
-        fillOpacity="0.1"
+        fillOpacity="0.05"
       />
       <text 
-        x="8" 
-        y="26" 
-        fontFamily="Fira Code, monospace" 
-        fontSize="16" 
+        x="15" 
+        y="32" 
+        fontFamily="Inter, system-ui, sans-serif" 
+        fontSize="22" 
         fontWeight="900"
-        letterSpacing="1px"
+        letterSpacing="2px"
         fill="currentColor"
       >
         &lt;abd /&gt;

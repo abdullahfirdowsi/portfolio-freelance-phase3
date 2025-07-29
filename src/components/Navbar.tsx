@@ -25,7 +25,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="bg-primary-50 rounded-lg p-1">
-              <AbdIcon className="h-8 w-16 text-primary-700" />
+              <AbdIcon className="h-10 w-24 text-primary-700" />
             </div>
             <div>
               <h1 className="text-lg sm:text-xl font-bold text-gray-900">Abdullah Firdowsi</h1>

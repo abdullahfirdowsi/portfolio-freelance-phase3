@@ -46,7 +46,7 @@ const LoginPage = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center mb-4">
           <div className="bg-primary-50 rounded-xl p-3 shadow-lg">
-            <AbdIcon className="h-10 w-20 text-primary-700" />
+            <AbdIcon className="h-12 w-28 text-primary-700" />
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
