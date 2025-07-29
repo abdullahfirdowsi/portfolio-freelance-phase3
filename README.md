@@ -1,6 +1,6 @@
 # Abdullah Firdowsi Portfolio
 
-This is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) stack application designed as a professional portfolio website for a freelance project mentor and developer. It features a public-facing portfolio showcasing projects, pricing, and contact information, along with a secure admin dashboard for managing all content.
+This is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) stack application designed as a professional portfolio website for a freelance project development specialist and developer. It features a public-facing portfolio showcasing projects, pricing, and contact information, along with a secure admin dashboard for managing all content.
 
 ## 🚀 Technologies Used
 
