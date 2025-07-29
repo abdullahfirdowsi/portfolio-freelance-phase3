@@ -34,7 +34,7 @@ const Projects = () => {
             // Only increment view if user hasn't viewed this project today
             if (!hasViewed) {
               try {
-                await api.incrementProjectView(project._id);
+                await api.incrementProjectView(String(project._id));
                 // Set cookie to expire in 1 day
                 Cookies.set(cookieName, 'true', { expires: 1 });
               } catch (err) {
@@ -82,7 +82,7 @@ const Projects = () => {
           
           if (!hasViewed) {
             try {
-              await api.incrementProjectView(project._id);
+              await api.incrementProjectView(String(project._id));
               Cookies.set(cookieName, 'true', { expires: 1 });
             } catch (err) {
               console.error('Failed to increment view for project:', project._id, err);
