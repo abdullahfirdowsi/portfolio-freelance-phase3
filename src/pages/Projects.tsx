@@ -1,32 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, Github, Filter } from 'lucide-react';
+import { ExternalLink, Github, Filter, Search } from 'lucide-react';
 import WhatsAppIcon from '../components/WhatsAppIcon';
+import SearchInput from '../components/SearchInput';
+import Pagination from '../components/Pagination';
 import Cookies from 'js-cookie';
 import { api } from '../utils/api';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
   const [projects, setProjects] = useState([]);
+  const [totalProjects, setTotalProjects] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const itemsPerPage = 9;
   const filters = ['All', 'AI/ML', 'Web Development', 'Data Science', 'IoT', 'Mobile App'];
 
   // Fetch projects from backend
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/projects?limit=100`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch projects');
-        }
-        const data = await response.json();
-        setProjects(data.projects || data);
+
+    fetchProjects();
+  }, [currentPage, searchQuery, activeFilter]);
+
+  const fetchProjects = async () => {
+    try {
+      setLoading(true);
+      
+      // Build search query combining text search and category filter
+      let searchTerm = searchQuery;
+      if (activeFilter !== 'All' && searchQuery) {
+        // If both category filter and search query exist, prioritize search query
+        // The backend will handle the search across title, category, and description
+        searchTerm = searchQuery;
+      } else if (activeFilter !== 'All') {
+        // If only category filter exists, use it as search term
+        searchTerm = activeFilter;
+      }
+      
+      const response = await api.getProjects({
+        search: searchTerm,
+        page: currentPage,
+        limit: itemsPerPage
+      });
+      
+      if (response.success) {
+        const data = response.data;
+        setProjects(data.projects || []);
+        setTotalProjects(data.total || 0);
         setError(null);
         
         // Increment view count for each project (only once per day per user)
-        const projectsArray = data.projects || data;
+        const projectsArray = data.projects || [];
         projectsArray.forEach(async (project: any) => {
           if (project._id) {
             const cookieName = `project_view_${String(project._id)}`;
@@ -44,63 +70,82 @@ const Projects = () => {
             }
           }
         });
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching projects:', err);
-        // Fallback to sample data if API fails
-        setProjects([
-          {
-            _id: 1,
-            title: "Amazon E-Commerce Product Quality Analysis",
-            category: "AI/ML",
-            description: "Interactive website leveraging customer reviews and real-time product data to forecast Amazon product quality using LSTM model.",
-            techStack: ["Python", "LSTM", "Sentiment Analysis", "Scraper API", "Render"],
-            price: "₹12,000",
-            image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=400",
-            features: ["Real-time data scraping", "Sentiment analysis", "LSTM prediction", "Interactive dashboard"]
-          },
-          {
-            _id: 2,
-            title: "LeafCare - Cassava Plant Disease Detection",
-            category: "AI/ML",
-            description: "Deep learning approach using CNN and EfficientNetB0 model to classify diseases in cassava leaf images with 96% accuracy.",
-            techStack: ["Python", "CNN", "EfficientNetB0", "Streamlit", "Image Processing"],
-            price: "₹10,000",
-            image: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=400",
-            features: ["96% accuracy", "CNN implementation", "Streamlit interface", "Image classification"]
-          }
-        ]);
-        
-        // For fallback data, also implement unique view tracking
-        const fallbackProjects = [
-          { _id: 1 },
-          { _id: 2 }
-        ];
-        
-        fallbackProjects.forEach(async (project) => {
-          const cookieName = `project_view_${String(project._id)}`;
-          const hasViewed = Cookies.get(cookieName);
-          
-          if (!hasViewed) {
-            try {
-              await api.incrementProjectView(String(project._id));
-              Cookies.set(cookieName, 'true', { expires: 1 });
-            } catch (err) {
-              console.error('Failed to increment view for project:', project._id, err);
-            }
-          }
-        });
-      } finally {
-        setLoading(false);
+      } else {
+        throw new Error(response.error || 'Failed to fetch projects');
       }
-    };
+    } catch (err) {
+      setError(err.message);
+      console.error('Error fetching projects:', err);
+      
+      // Fallback to sample data if API fails
+      const fallbackProjects = [
+        {
+          _id: 1,
+          title: "Amazon E-Commerce Product Quality Analysis",
+          category: "AI/ML",
+          description: "Interactive website leveraging customer reviews and real-time product data to forecast Amazon product quality using LSTM model.",
+          techStack: ["Python", "LSTM", "Sentiment Analysis", "Scraper API", "Render"],
+          price: "₹12,000",
+          image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=400",
+          features: ["Real-time data scraping", "Sentiment analysis", "LSTM prediction", "Interactive dashboard"]
+        },
+        {
+          _id: 2,
+          title: "LeafCare - Cassava Plant Disease Detection",
+          category: "AI/ML",
+          description: "Deep learning approach using CNN and EfficientNetB0 model to classify diseases in cassava leaf images with 96% accuracy.",
+          techStack: ["Python", "CNN", "EfficientNetB0", "Streamlit", "Image Processing"],
+          price: "₹10,000",
+          image: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=400",
+          features: ["96% accuracy", "CNN implementation", "Streamlit interface", "Image classification"]
+        }
+      ];
+      
+      // Apply client-side filtering for fallback data
+      const filtered = activeFilter === 'All' 
+        ? fallbackProjects 
+        : fallbackProjects.filter(project => project.category === activeFilter);
+      
+      setProjects(filtered);
+      setTotalProjects(filtered.length);
+      
+      // For fallback data, also implement unique view tracking
+      fallbackProjects.forEach(async (project) => {
+        const cookieName = `project_view_${String(project._id)}`;
+        const hasViewed = Cookies.get(cookieName);
+        
+        if (!hasViewed) {
+          try {
+            await api.incrementProjectView(String(project._id));
+            Cookies.set(cookieName, 'true', { expires: 1 });
+          } catch (err) {
+            console.error('Failed to increment view for project:', project._id, err);
+          }
+        }
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchProjects();
-  }, []);
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1); // Reset to first page when searching
+  };
 
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter);
+    setCurrentPage(1); // Reset to first page when changing filter
+    setSearchQuery(''); // Clear search when using category filter
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top when changing pages
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const totalPages = Math.ceil(totalProjects / itemsPerPage);
 
   return (
     <div className="section-padding animate-fade-in">
@@ -115,13 +160,26 @@ const Projects = () => {
           </p>
         </div>
 
+        {/* Search Bar */}
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
+          <SearchInput
+            value={searchQuery}
+            onChange={handleSearch}
+            placeholder="Search projects by title, category, or description..."
+            className="w-full md:w-96"
+          />
+          <div className="text-sm text-gray-600">
+            {totalProjects} project{totalProjects !== 1 ? 's' : ''} found
+          </div>
+        </div>
+
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           <Filter className="h-5 w-5 text-gray-500 mt-2" />
           {filters.map((filter) => (
             <button
               key={filter}
-              onClick={() => setActiveFilter(filter)}
+              onClick={() => handleFilterChange(filter)}
               className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
                 activeFilter === filter
                   ? 'bg-primary-600 text-white shadow-lg'
@@ -149,7 +207,7 @@ const Projects = () => {
         ) : null}
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
+          {projects.map((project) => (
             <div key={project._id || project.id} className="card overflow-hidden">
               <div className="relative">
                 <img
@@ -223,6 +281,51 @@ const Projects = () => {
             </div>
           ))}
         </div>
+
+        {/* No Results Message */}
+        {!loading && projects.length === 0 && (
+          <div className="text-center py-12">
+            <div className="bg-gray-50 rounded-lg p-8 max-w-md mx-auto">
+              <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                {searchQuery || activeFilter !== 'All' ? 'No projects found' : 'No projects available'}
+              </h3>
+              <p className="text-gray-600 mb-4">
+                {searchQuery 
+                  ? `No projects match "${searchQuery}". Try a different search term.`
+                  : activeFilter !== 'All'
+                    ? `No projects found in "${activeFilter}" category.`
+                    : 'Projects will appear here when available.'
+                }
+              </p>
+              {(searchQuery || activeFilter !== 'All') && (
+                <button
+                  onClick={() => {
+                    setSearchQuery('');
+                    setActiveFilter('All');
+                    setCurrentPage(1);
+                  }}
+                  className="text-primary-600 hover:text-primary-700 font-medium"
+                >
+                  Clear filters
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Pagination */}
+        {!loading && projects.length > 0 && totalPages > 1 && (
+          <div className="mt-12">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              totalItems={totalProjects}
+              itemsPerPage={itemsPerPage}
+            />
+          </div>
+        )}
 
         {/* CTA Section */}
         <div className="text-center mt-16">
