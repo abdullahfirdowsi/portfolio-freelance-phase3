@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Code } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,13 +22,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-primary-600 p-2 rounded-lg">
-              <Code className="h-6 w-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">Abdullah Firdowsi</h1>
-              <p className="text-sm text-gray-600">Project Development</p>
-            </div>
+            <h1 className="text-xl font-bold text-gray-900">Abdullah Firdowsi</h1>
           </Link>
 
           {/* Desktop Navigation */}
