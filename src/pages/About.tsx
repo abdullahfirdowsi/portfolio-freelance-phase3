@@ -70,7 +70,7 @@ const About = () => {
             About Abdullah Firdowsi
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Passionate AI & Data Science Expert | Your Trusted Project Mentor
+            Passionate AI & Data Science Expert | Your Trusted Project Development Partner
           </p>
         </div>
 

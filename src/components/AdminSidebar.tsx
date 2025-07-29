@@ -44,7 +44,7 @@ const AdminSidebar = () => {
           </div>
           <div>
             <h1 className="text-lg font-bold">Admin Panel</h1>
-            <p className="text-sm text-gray-400">Portfolio Manager</p>
+            <p className="text-sm text-gray-400">Project Development</p>
           </div>
         </Link>
       </div>
