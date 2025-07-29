@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Code } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
+import AbdIcon from './AbdIcon';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +25,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="bg-primary-600 p-2 rounded-lg">
-              <Code className="h-6 w-6 text-white" />
+              <AbdIcon className="h-6 w-6 text-white" />
             </div>
             <div>
               <h1 className="text-lg sm:text-xl font-bold text-gray-900">Abdullah Firdowsi</h1>

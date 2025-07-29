@@ -7,9 +7,9 @@ import {
   MessageSquare, 
   LogOut,
   User,
-  Code,
   X
 } from 'lucide-react';
+import AbdIcon from './AbdIcon';
 
 interface AdminSidebarProps {
   isSidebarOpen: boolean;
@@ -55,7 +55,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, toggleSideba
       <div className="p-6 border-b border-gray-700">
         <Link to="/admin" className="flex items-center space-x-2">
           <div className="bg-primary-600 p-2 rounded-lg">
-            <Code className="h-6 w-6 text-white" />
+            <AbdIcon className="h-6 w-6 text-white" />
           </div>
           <div>
             <h1 className="text-lg font-bold">Admin Panel</h1>

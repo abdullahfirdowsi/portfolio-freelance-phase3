@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { Code, Lock, Mail, AlertCircle } from 'lucide-react';
+import { Lock, Mail, AlertCircle } from 'lucide-react';
+import AbdIcon from '../../components/AbdIcon';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -45,7 +46,7 @@ const LoginPage = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <div className="bg-primary-600 p-3 rounded-lg">
-            <Code className="h-8 w-8 text-white" />
+            <AbdIcon className="h-8 w-8 text-white" />
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
