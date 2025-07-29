@@ -133,8 +133,8 @@ const Pricing = () => {
         </div>
 
         {/* Pricing Tiers */}
-        <div className="overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 py-8">
           {pricingTiers.map((tier, index) => (
             <div
               key={tier._id || index}
@@ -143,7 +143,7 @@ const Pricing = () => {
               } transition-all duration-300 hover:shadow-xl`}
             >
               {tier.popular && (
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
                   <span className="bg-primary-600 text-white px-6 py-2 rounded-full text-sm font-semibold">
                     Most Popular
                   </span>
@@ -176,7 +176,6 @@ const Pricing = () => {
               </div>
             </div>
           ))}
-        </div>
         </div>
 
         {/* Add-ons Section */}
