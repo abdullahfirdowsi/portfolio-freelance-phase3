@@ -327,26 +327,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Final CTA */}
-        <div className="text-center">
-          <div className="bg-primary-600 text-white rounded-2xl p-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Still Have Questions?
-            </h2>
-            <p className="text-xl mb-6 opacity-90">
-              Don't hesitate to reach out. I'm here to help you succeed with your projects.
-            </p>
-            <a
-              href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I%20have%20some%20questions%20about%20your%20services."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center space-x-2"
-            >
-              <WhatsAppIcon className="h-5 w-5" />
-              <span>Ask on WhatsApp</span>
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   );
