@@ -8,19 +8,20 @@ interface AbdIconProps {
 const AbdIcon: React.FC<AbdIconProps> = ({ className = "h-6 w-6", ...props }) => {
   return (
     <svg 
-      width="120" 
-      height="64" 
-      viewBox="0 0 120 64" 
+      width="80" 
+      height="32" 
+      viewBox="0 0 80 32" 
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       {...props}
     >
       <text 
-        x="10" 
-        y="45" 
+        x="5" 
+        y="22" 
         fontFamily="Fira Code, monospace" 
-        fontSize="36" 
+        fontSize="18" 
+        fontWeight="bold"
         fill="currentColor"
       >
         &lt;abd /&gt;
