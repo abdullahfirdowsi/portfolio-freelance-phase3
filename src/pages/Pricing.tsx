@@ -139,11 +139,11 @@ const Pricing = () => {
             <div
               key={tier._id || index}
               className={`relative bg-white rounded-2xl shadow-lg border-2 ${tier.color} ${
-                tier.popular ? 'transform scale-105' : ''
+                tier.popular ? 'transform scale-105 z-10' : ''
               } transition-all duration-300 hover:shadow-xl`}
             >
               {tier.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
                   <span className="bg-primary-600 text-white px-6 py-2 rounded-full text-sm font-semibold">
                     Most Popular
                   </span>
