@@ -294,7 +294,7 @@ const Contact = () => {
               </p>
               <a
                 href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I%20need%20immediate%20help%20with%20my%20project."
-                className="bg-primary-50 hover:bg-primary-100 text-primary-700 px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center space-x-2"
               >
