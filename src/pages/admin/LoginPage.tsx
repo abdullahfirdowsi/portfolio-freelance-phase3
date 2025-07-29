@@ -44,8 +44,10 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="flex justify-center">
-          <AbdIcon className="h-8 w-16 text-primary-600" />
+        <div className="flex justify-center mb-4">
+          <div className="bg-primary-50 rounded-xl p-3 shadow-lg">
+            <AbdIcon className="h-10 w-20 text-primary-700" />
+          </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
           Admin Login
