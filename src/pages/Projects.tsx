@@ -22,6 +22,17 @@ const Projects = () => {
         const data = await response.json();
         setProjects(data);
         setError(null);
+        
+        // Increment view count for each project
+        data.forEach(async (project: any) => {
+          if (project._id) {
+            try {
+              await api.incrementProjectView(project._id);
+            } catch (err) {
+              console.error('Failed to increment view for project:', project._id, err);
+            }
+          }
+        });
       } catch (err) {
         setError(err.message);
         console.error('Error fetching projects:', err);

@@ -53,4 +53,22 @@ router.post('/contact', async (req, res) => {
   }
 });
 
+// @route   PUT /api/projects/:id/view
+// @desc    Increment project view count
+// @access  Public
+router.put('/projects/:id/view', async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+
+    await project.incrementViews();
+    res.json({ message: 'View count updated', views: project.views });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 export default router;

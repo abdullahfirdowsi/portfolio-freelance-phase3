@@ -51,6 +51,14 @@ class ApiService {
     return this.handleResponse(response);
   }
 
+  async incrementProjectView(projectId: string): Promise<ApiResponse> {
+    const response = await fetch(`${API_BASE_URL}/projects/${projectId}/view`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return this.handleResponse(response);
+  }
+
   async submitContact(data: any): Promise<ApiResponse> {
     const response = await fetch(`${API_BASE_URL}/contact`, {
       method: 'POST',
