@@ -55,15 +55,13 @@ const Contact = () => {
     } else {
       // Remove all non-digit characters for validation
       const phoneDigits = data.phone.replace(/\D/g, '');
-      if (phoneDigits.length < 10) {
-        errors.phone = 'Phone number must be at least 10 digits';
-      } else if (phoneDigits.length > 15) {
-        errors.phone = 'Phone number cannot exceed 15 digits';
-      }
-      // Additional format validation for Indian numbers
-      const phoneRegex = /^[\+]?[1-9][\d\s\-\(\)]{8,15}$/;
-      if (!phoneRegex.test(data.phone.trim())) {
-        errors.phone = 'Please enter a valid phone number';
+      
+      // For Indian phone numbers, enforce exactly 10 digits
+      if (phoneDigits.length !== 10) {
+        errors.phone = 'Phone number must be exactly 10 digits';
+      } else if (!/^[6-9]/.test(phoneDigits)) {
+        // Indian mobile numbers start with 6, 7, 8, or 9
+        errors.phone = 'Please enter a valid Indian mobile number (starting with 6, 7, 8, or 9)';
       }
     }
 
@@ -84,9 +82,22 @@ const Contact = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+    
+    let processedValue = value;
+    
+    // Special handling for phone number field
+    if (name === 'phone') {
+      // Remove all non-digit characters
+      processedValue = value.replace(/\D/g, '');
+      // Limit to 10 digits
+      if (processedValue.length > 10) {
+        processedValue = processedValue.substring(0, 10);
+      }
+    }
+    
     setFormData({
       ...formData,
-      [name]: value
+      [name]: processedValue
     });
 
     // Clear specific field error when user starts typing
@@ -301,11 +312,15 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   required
+                  maxLength={10}
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all ${
                     formErrors.phone ? 'border-red-500 bg-red-50' : 'border-gray-300'
                   }`}
-                  placeholder="Enter your phone number"
+                  placeholder="9876543210"
                 />
+                <p className="mt-1 text-xs text-gray-500">
+                  Enter 10-digit Indian mobile number (digits only)
+                </p>
                 {formErrors.phone && (
                   <p className="mt-1 text-sm text-red-600 flex items-center">
                     <span className="mr-1">⚠</span>
