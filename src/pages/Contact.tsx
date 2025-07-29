@@ -183,6 +183,22 @@ const Contact = () => {
               </div>
 
               <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  placeholder="Enter your phone number"
+                />
+              </div>
+
+              <div>
                 <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 mb-2">
                   Project Type *
                 </label>
@@ -203,22 +219,6 @@ const Contact = () => {
                   <option value="data-science">Data Science</option>
                   <option value="custom">Custom Project</option>
                 </select>
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number *
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                  placeholder="Enter your phone number"
-                />
               </div>
 
               <div>
