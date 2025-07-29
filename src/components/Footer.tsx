@@ -58,7 +58,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-primary-400 mt-0.5" />
+                <Mail className="h-4 w-4 text-primary-400" />
                 <span className="text-gray-300 text-sm">abdullahfirdowsi@gmail.com</span>
               </div>
               <div className="flex items-center space-x-2">
