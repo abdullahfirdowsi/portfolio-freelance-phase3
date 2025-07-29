@@ -3,10 +3,10 @@ import auth from '../middleware/authMiddleware.js';
 import Project from '../models/Project.js';
 import Pricing from '../models/Pricing.js';
 import Contact from '../models/Contact.js';
-import AWS from 'aws-sdk';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import multer from 'multer';
-import multerS3 from 'multer-s3';
 import dotenv from 'dotenv';
+import crypto from 'crypto';
 
 dotenv.config();
 
@@ -114,35 +114,71 @@ router.get('/dashboard-stats', auth, async (req, res) => {
 });
 
 // Configure AWS S3
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+const s3 = new S3Client({
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
   region: process.env.AWS_REGION,
 });
 
-// Configure Multer for S3 upload
+// Configure Multer for memory storage
 const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: process.env.S3_BUCKET_NAME,
-    acl: 'public-read', // Make uploaded files publicly readable
-    metadata: function (req, file, cb) {
-      cb(null, { fieldName: file.fieldname });
-    },
-    key: function (req, file, cb) {
-      cb(null, Date.now().toString() + '-' + file.originalname); // Unique file name
-    },
-  }),
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only image files are allowed'), false);
+    }
+  },
 });
 
 // @route   POST /api/admin/upload
 // @desc    Upload image to S3
 // @access  Private (Admin)
-router.post('/upload', auth, upload.single('image'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ message: 'No file uploaded' });
+router.post('/upload', auth, upload.single('image'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+
+    // Generate unique filename
+    const fileExtension = req.file.originalname.split('.').pop();
+    const fileName = `${Date.now()}-${crypto.randomBytes(6).toString('hex')}.${fileExtension}`;
+
+    // Upload parameters
+    const uploadParams = {
+      Bucket: process.env.S3_BUCKET_NAME,
+      Key: fileName,
+      Body: req.file.buffer,
+      ContentType: req.file.mimetype,
+      CacheControl: 'max-age=31536000',
+      // Note: ACL is not supported in this version, using bucket policy instead
+    };
+
+    // Upload to S3
+    const command = new PutObjectCommand(uploadParams);
+    await s3.send(command);
+
+    // Construct the public URL
+    const imageUrl = `https://${process.env.S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`;
+
+    res.json({ 
+      imageUrl, 
+      message: 'Image uploaded successfully',
+      fileName: fileName 
+    });
+  } catch (error) {
+    console.error('Upload error:', error);
+    res.status(500).json({ 
+      message: 'Failed to upload image',
+      error: error.message 
+    });
   }
-  res.json({ imageUrl: req.file.location, message: 'Image uploaded successfully' });
 });
 
 // Project Routes

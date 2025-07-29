@@ -87,6 +87,7 @@ const ProjectFormPage = () => {
     try {
       setUploading(true);
       const response = await api.uploadImage(file);
+      console.log('Upload response:', response); // Debug log
       if (response.success) {
         setFormData({
           ...formData,
@@ -241,7 +242,17 @@ const ProjectFormPage = () => {
                   src={formData.image}
                   alt="Project preview"
                   className="w-32 h-32 object-cover rounded-lg"
+                  onError={(e) => {
+                    console.error('Image failed to load:', formData.image);
+                    // Show a placeholder or error message
+                  }}
+                  onLoad={() => {
+                    console.log('Image loaded successfully:', formData.image);
+                  }}
                 />
+                <div className="mt-2 text-xs text-gray-500 break-all">
+                  {formData.image}
+                </div>
               </div>
             )}
             <div>
