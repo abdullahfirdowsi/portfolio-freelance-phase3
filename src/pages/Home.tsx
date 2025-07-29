@@ -80,15 +80,6 @@ const Home = () => {
                   <span>View Projects</span>
                   <ArrowRight className="h-5 w-5" />
                 </Link>
-                <a
-                  href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I'm%20interested%20in%20your%20project%20services."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
-                >
-                  <WhatsAppIcon className="h-5 w-5" />
-                  <span>WhatsApp Me</span>
-                </a>
               </div>
             </div>
             <div className="animate-slide-up">
