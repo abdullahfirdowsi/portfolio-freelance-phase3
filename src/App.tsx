@@ -75,8 +75,6 @@ function App() {
               <WhatsAppFloat />
             </div>
           } />
-  );
-}
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<LoginPage />} />
@@ -128,4 +126,7 @@ function App() {
         </Routes>
       </Router>
     </AuthProvider>
+  );
+}
+
 export default App;
