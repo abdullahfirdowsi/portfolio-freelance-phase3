@@ -56,6 +56,8 @@ const ProjectFormPage = () => {
           githubUrl: project.githubUrl || '',
           liveUrl: project.liveUrl || '',
           tags: project.tags || ['']
+        });
+      } else {
         setError(response.error || 'Failed to fetch project data');
       }
     } catch (err) {
