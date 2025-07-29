@@ -54,9 +54,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, toggleSideba
       {/* Logo */}
       <div className="p-6 border-b border-gray-700">
         <Link to="/admin" className="flex items-center space-x-2">
-          <div className="bg-primary-600 p-2 rounded-lg">
-            <AbdIcon className="h-6 w-6 text-white" />
-          </div>
+          <AbdIcon className="h-6 w-12" />
           <div>
             <h1 className="text-lg font-bold">Admin Panel</h1>
             <p className="text-sm text-gray-400">Project Development</p>
