@@ -1,4 +1,5 @@
 import { ArrowRight, CheckCircle, Star, Code, Database, Brain, Globe, MessageCircle, Eye } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const services = [
@@ -73,11 +74,11 @@ const Home = () => {
                 Mini, Major, IEEE, Reports, PPT — everything covered by an experienced AI & Data Science expert.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="/projects" className="btn-primary flex items-center justify-center space-x-2">
+                <Link to="/projects" className="btn-primary flex items-center justify-center space-x-2">
                   <Eye className="h-5 w-5" />
                   <span>View Projects</span>
                   <ArrowRight className="h-5 w-5" />
-                </a>
+                </Link>
                 <a
                   href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I'm%20interested%20in%20your%20project%20services."
                   target="_blank"
@@ -164,9 +165,9 @@ const Home = () => {
                 ))}
               </div>
               <div className="mt-8">
-                <a href="/about" className="btn-primary">
+                <Link to="/about" className="btn-primary">
                   Learn More About Me
-                </a>
+                </Link>
               </div>
             </div>
             <div className="bg-primary-50 rounded-2xl p-8">
@@ -245,12 +246,12 @@ const Home = () => {
               <MessageCircle className="h-5 w-5" />
               <span>Start WhatsApp Chat</span>
             </a>
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="border-2 border-white text-white hover:bg-white hover:text-primary-600 px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
             >
               Send Email
-            </a>
+            </Link>
           </div>
         </div>
       </section>
