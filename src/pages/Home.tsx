@@ -83,7 +83,7 @@ const Home = () => {
                   href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I'm%20interested%20in%20your%20project%20services."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary flex items-center justify-center space-x-2"
+                  className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
                 >
                   <MessageCircle className="h-5 w-5" />
                   <span>WhatsApp Me</span>
@@ -246,7 +246,7 @@ const Home = () => {
               href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I'm%20interested%20in%20your%20project%20services."
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
             >
               <MessageCircle className="h-5 w-5" />
               <span>Start WhatsApp Chat</span>
