@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js'; // Import the database connection
+import authRoutes from './routes/authRoutes.js'; // Import auth routes
 
 dotenv.config(); // Load environment variables
 
@@ -14,6 +15,9 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json()); // For parsing application/json
+
+// Define Routes
+app.use('/api/auth', authRoutes); // Use auth routes
 
 // Basic route
 app.get('/', (req, res) => {
@@ -28,6 +32,6 @@ app.get('/health', (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(\`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
 ```
