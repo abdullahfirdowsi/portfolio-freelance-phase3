@@ -30,32 +30,32 @@ const Home = () => {
   ];
 
   const whyChooseMe = [
-    "4+ years of experience in AI/ML and Web Development",
-    "100% original code with proper documentation",
-    "Viva preparation and presentation support included",
+    "Fresh graduate with hands-on project experience",
+    "Original code with clear documentation",
+    "Help with viva preparation and explanations",
     "24/7 support via WhatsApp for quick queries",
-    "Money-back guarantee if not satisfied",
-    "Fast delivery within agreed timelines"
+    "Affordable pricing for students",
+    "Delivery within agreed timelines"
   ];
 
   const testimonials = [
     {
-      name: "Priya Sharma",
-      course: "B.Tech CSE, Final Year",
-      text: "Abdullah delivered my machine learning project on time with excellent documentation. Got A+ grade!",
-      rating: 5
+      name: "Prem Kumar",
+      course: "B.Tech AD, Final Year",
+      text: "Good work on my project. Code was clean and documentation was helpful for my presentation.",
+      rating: 4
     },
     {
-      name: "Rahul Kumar",
-      course: "MCA, 2nd Year",
-      text: "Amazing work on my web development project. The code quality and explanation were outstanding.",
-      rating: 5
+      name: "Sheik Mohamed",
+      course: "B.Sc., CS 2nd Year",
+      text: "Delivered my mini project on time. Helped me understand the code for viva preparation.",
+      rating: 4
     },
     {
-      name: "Sneha Patel",
-      course: "B.Tech IT, 3rd Year",
-      text: "Best project mentor! Helped me understand every aspect of my AI project. Highly recommended!",
-      rating: 5
+      name: "Rahul A",
+      course: "B.E CSE (CY), 3rd Year",
+      text: "Satisfied with the project work. Good communication and delivered as promised.",
+      rating: 4
     }
   ];
 
@@ -94,11 +94,11 @@ const Home = () => {
               <div className="bg-primary-50 rounded-2xl p-8">
                 <div className="grid grid-cols-2 gap-6 text-center">
                   <div>
-                    <div className="text-3xl font-bold text-primary-600">500+</div>
+                    <div className="text-3xl font-bold text-primary-600">5+</div>
                     <div className="text-gray-600">Projects Completed</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-primary-600">4.9/5</div>
+                    <div className="text-3xl font-bold text-primary-600">4.0/5</div>
                     <div className="text-gray-600">Client Rating</div>
                   </div>
                   <div>
@@ -106,7 +106,7 @@ const Home = () => {
                     <div className="text-gray-600">Support Available</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-primary-600">100%</div>
+                    <div className="text-3xl font-bold text-primary-600">95%</div>
                     <div className="text-gray-600">Success Rate</div>
                   </div>
                 </div>
@@ -171,23 +171,23 @@ const Home = () => {
               </div>
             </div>
             <div className="bg-primary-50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">My Expertise</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Skills</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-700">Python & AI/ML</span>
-                  <span className="text-primary-600 font-semibold">Expert</span>
+                  <span className="text-primary-600 font-semibold">Good</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-700">Web Development</span>
-                  <span className="text-primary-600 font-semibold">Expert</span>
+                  <span className="text-primary-600 font-semibold">Good</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-700">Data Science</span>
-                  <span className="text-primary-600 font-semibold">Expert</span>
+                  <span className="text-primary-600 font-semibold">Learning</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-700">Research Papers</span>
-                  <span className="text-primary-600 font-semibold">Advanced</span>
+                  <span className="text-gray-700">Documentation</span>
+                  <span className="text-primary-600 font-semibold">Good</span>
                 </div>
               </div>
             </div>
@@ -210,9 +210,12 @@ const Home = () => {
             {testimonials.map((testimonial, index) => (
               <div key={index} className="card p-6">
                 <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                  ))}
+                  <div className="flex">
+                    {[...Array(4)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                    ))}
+                    <Star className="h-5 w-5 text-gray-300" />
+                  </div>
                 </div>
                 <p className="text-gray-700 mb-4 italic">
                   "{testimonial.text}"
