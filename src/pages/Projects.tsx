@@ -113,7 +113,7 @@ const Projects = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover"
+                  className="w-full max-w-full h-48 object-cover"
                 />
                 <div className="absolute top-4 right-4">
                   <span className="bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-medium">

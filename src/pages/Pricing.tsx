@@ -175,7 +175,8 @@ const Pricing = () => {
           </div>
         ) : null}
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {pricingTiers.map((tier, index) => (
             <div
               key={tier._id || index}
@@ -217,6 +218,7 @@ const Pricing = () => {
               </div>
             </div>
           ))}
+        </div>
         </div>
 
         {/* Add-ons Section */}

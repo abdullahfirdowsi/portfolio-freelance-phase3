@@ -27,8 +27,8 @@ const Navbar = () => {
               <Code className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Abdullah Firdowsi</h1>
-              <p className="text-sm text-gray-600">Project Development</p>
+              <h1 className="text-lg sm:text-xl font-bold text-gray-900">Abdullah Firdowsi</h1>
+              <p className="text-xs sm:text-sm text-gray-600">Project Development</p>
             </div>
           </Link>
 

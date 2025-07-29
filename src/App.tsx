@@ -25,7 +25,7 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-gray-50 overflow-x-hidden">
               <Navbar />
               <main>
                 <Home />
@@ -35,7 +35,7 @@ function App() {
             </div>
           } />
           <Route path="/projects" element={
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-gray-50 overflow-x-hidden">
               <Navbar />
               <main>
                 <Projects />
@@ -45,7 +45,7 @@ function App() {
             </div>
           } />
           <Route path="/pricing" element={
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-gray-50 overflow-x-hidden">
               <Navbar />
               <main>
                 <Pricing />
@@ -55,7 +55,7 @@ function App() {
             </div>
           } />
           <Route path="/about" element={
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-gray-50 overflow-x-hidden">
               <Navbar />
               <main>
                 <About />
@@ -65,7 +65,7 @@ function App() {
             </div>
           } />
           <Route path="/contact" element={
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-gray-50 overflow-x-hidden">
               <Navbar />
               <main>
                 <Contact />

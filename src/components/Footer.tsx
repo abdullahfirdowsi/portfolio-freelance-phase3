@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-xl font-bold mb-4">Abdullah Firdowsi</h3>
+            <h3 className="text-lg sm:text-xl font-bold mb-4">Abdullah Firdowsi</h3>
             <p className="text-gray-300 mb-4">
               Passionate AI & Data Science expert helping college students with their projects. 
               Specializing in Mini Projects, Major Projects, IEEE papers, and complete project solutions.
@@ -43,7 +43,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-base sm:text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li><a href="/" className="text-gray-300 hover:text-white transition-colors">Home</a></li>
               <li><a href="/projects" className="text-gray-300 hover:text-white transition-colors">Projects</a></li>
@@ -55,7 +55,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
+            <h4 className="text-base sm:text-lg font-semibold mb-4">Contact Info</h4>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-primary-400 flex-shrink-0" />
