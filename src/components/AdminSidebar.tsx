@@ -40,8 +40,8 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, toggleSideba
   };
 
   return (
-    <div className={`bg-gray-900 text-white w-64 min-h-screen flex flex-col fixed z-50 transition-transform duration-300 ease-in-out overflow-y-auto ${
-      isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+    <div className={`bg-gray-900 text-white w-64 min-h-screen flex flex-col fixed z-50 transition-transform duration-300 ease-in-out overflow-y-auto md:translate-x-0 ${
+      isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
     }`}>
       {/* Mobile Close Button */}
       <button
