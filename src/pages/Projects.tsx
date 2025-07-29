@@ -28,7 +28,7 @@ const Projects = () => {
         // Increment view count for each project (only once per day per user)
         data.forEach(async (project: any) => {
           if (project._id) {
-            const cookieName = `project_view_${project._id}`;
+            const cookieName = `project_view_${String(project._id)}`;
             const hasViewed = Cookies.get(cookieName);
             
             // Only increment view if user hasn't viewed this project today
@@ -77,7 +77,7 @@ const Projects = () => {
         ];
         
         fallbackProjects.forEach(async (project) => {
-          const cookieName = `project_view_${project._id}`;
+          const cookieName = `project_view_${String(project._id)}`;
           const hasViewed = Cookies.get(cookieName);
           
           if (!hasViewed) {
