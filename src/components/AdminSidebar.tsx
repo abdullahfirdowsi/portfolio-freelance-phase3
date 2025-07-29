@@ -10,7 +10,12 @@ import {
   Code
 } from 'lucide-react';
 
-const AdminSidebar = () => {
+interface AdminSidebarProps {
+  isSidebarOpen: boolean;
+  toggleSidebar: () => void;
+}
+
+const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const location = useLocation();
   const { logout, user } = useAuth();
 
@@ -34,7 +39,17 @@ const AdminSidebar = () => {
   };
 
   return (
-    <div className="bg-gray-900 text-white w-64 min-h-screen flex flex-col">
+    <div className={`bg-gray-900 text-white w-64 min-h-screen flex flex-col fixed md:relative z-40 transition-transform duration-300 ease-in-out ${
+      isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+    }`}>
+      {/* Mobile Close Button */}
+      <button
+        onClick={toggleSidebar}
+        className="md:hidden absolute top-4 right-4 text-white hover:text-gray-300"
+      >
+        <X className="h-6 w-6" />
+      </button>
+
       {/* Logo */}
       <div className="p-6 border-b border-gray-700">
         <Link to="/admin" className="flex items-center space-x-2">
