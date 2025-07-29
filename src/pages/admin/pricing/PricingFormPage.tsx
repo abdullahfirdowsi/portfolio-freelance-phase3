@@ -52,9 +52,13 @@ const PricingFormPage = () => {
           isActive: pricing.isActive !== undefined ? pricing.isActive : true,
           order: pricing.order || 0
         });
+      } else {
+        setError(response.error || 'Failed to fetch pricing data');
       }
     } catch (err) {
       setError('Failed to fetch pricing data');
+    } finally {
+      setFetchingPricing(false);
     }
   };
 
@@ -111,13 +115,11 @@ const PricingFormPage = () => {
         navigate('/admin/pricing');
         showSuccess(isEditing ? 'Pricing tier updated successfully' : 'Pricing tier created successfully');
       } else {
-        setError(response.error || 'Failed to fetch pricing data');
+        setError(response.error || 'Failed to save pricing tier');
         showError(response.error || 'Failed to save pricing tier');
       }
     } catch (err) {
-      setError('Network error occurred while fetching pricing data');
-    } finally {
-      setFetchingPricing(false);
+      setError('Network error occurred');
       showError('Network error occurred');
     } finally {
       setLoading(false);
