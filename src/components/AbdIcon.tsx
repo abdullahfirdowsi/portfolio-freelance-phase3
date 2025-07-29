@@ -25,7 +25,7 @@ const AbdIcon: React.FC<AbdIconProps> = ({ className = "h-6 w-6", ...props }) =>
         rx="6" 
         fill="none"
         stroke="currentColor" 
-        strokeWidth="2"
+        strokeWidth="1"
       />
       {/* Background fill */}
       <rect 
@@ -35,13 +35,13 @@ const AbdIcon: React.FC<AbdIconProps> = ({ className = "h-6 w-6", ...props }) =>
         height="36" 
         rx="4" 
         fill="currentColor" 
-        fillOpacity="0.05"
+        fillOpacity="0.02"
       />
       <text 
-        x="15" 
-        y="32" 
+        x="18" 
+        y="31" 
         fontFamily="Inter, system-ui, sans-serif" 
-        fontSize="22" 
+        fontSize="20" 
         fontWeight="900"
         letterSpacing="2px"
         fill="currentColor"
