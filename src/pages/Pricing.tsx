@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { Check, Clock, Shield, Zap } from 'lucide-react';
 import WhatsAppIcon from '../components/WhatsAppIcon';
 
@@ -13,88 +13,60 @@ interface PricingTier {
 }
 
 const Pricing = () => {
-  const [pricingTiers, setPricingTiers] = useState<PricingTier[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  // Fetch pricing from backend
-  useEffect(() => {
-    const fetchPricing = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/pricing`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch pricing');
-        }
-        const data = await response.json();
-        setPricingTiers(data);
-        setError(null);
-      } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred';
-        setError(errorMessage);
-        console.error('Error fetching pricing:', err);
-        // Fallback to sample data if API fails
-        setPricingTiers([
-          {
-            _id: 1,
-            name: "Mini Projects",
-            price: "₹2,000 - ₹5,000",
-            description: "Perfect for semester assignments and quick submissions",
-            features: [
-              "Simple project implementation",
-              "Basic documentation",
-              "Source code with comments",
-              "1 revision included",
-              "3-7 days delivery",
-              "WhatsApp support"
-            ],
-            popular: false,
-            color: "border-gray-200"
-          },
-          {
-            _id: 2,
-            name: "Major Projects",
-            price: "₹6,000 - ₹15,000",
-            description: "Comprehensive final year projects with complete documentation",
-            features: [
-              "Complete project development",
-              "Detailed documentation",
-              "PPT presentation",
-              "Viva preparation support",
-              "3 revisions included",
-              "10-20 days delivery",
-              "24/7 WhatsApp support",
-              "Video explanation"
-            ],
-            popular: true,
-            color: "border-primary-500"
-          },
-          {
-            _id: 3,
-            name: "IEEE Papers",
-            price: "₹8,000 - ₹12,000",
-            description: "Research papers and conference submissions",
-            features: [
-              "Original research work",
-              "IEEE format compliance",
-              "Literature review",
-              "Implementation & results",
-              "2 revisions included",
-              "15-25 days delivery",
-              "Publication guidance",
-              "Plagiarism report"
-            ],
-            popular: false,
-            color: "border-gray-200"
-          }
-        ]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPricing();
-  }, []);
+  const pricingTiers: PricingTier[] = [
+    {
+      _id: 1,
+      name: "Mini Projects",
+      price: "₹2,000 - ₹5,000",
+      description: "Perfect for semester assignments and quick submissions",
+      features: [
+        "Simple project implementation",
+        "Basic documentation",
+        "Source code with comments",
+        "1 revision included",
+        "3-7 days delivery",
+        "WhatsApp support"
+      ],
+      popular: false,
+      color: "border-gray-200"
+    },
+    {
+      _id: 2,
+      name: "Major Projects",
+      price: "₹6,000 - ₹15,000",
+      description: "Comprehensive final year projects with complete documentation",
+      features: [
+        "Complete project development",
+        "Detailed documentation",
+        "PPT presentation",
+        "Viva preparation support",
+        "3 revisions included",
+        "10-20 days delivery",
+        "24/7 WhatsApp support",
+        "Video explanation"
+      ],
+      popular: true,
+      color: "border-primary-500"
+    },
+    {
+      _id: 3,
+      name: "IEEE Papers",
+      price: "₹8,000 - ₹12,000",
+      description: "Research papers and conference submissions",
+      features: [
+        "Original research work",
+        "IEEE format compliance",
+        "Literature review",
+        "Implementation & results",
+        "2 revisions included",
+        "15-25 days delivery",
+        "Publication guidance",
+        "Plagiarism report"
+      ],
+      popular: false,
+      color: "border-gray-200"
+    }
+  ];
 
   const addOns = [
     {
@@ -161,20 +133,6 @@ const Pricing = () => {
         </div>
 
         {/* Pricing Tiers */}
-        {loading ? (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-            <p className="mt-4 text-gray-600">Loading pricing...</p>
-          </div>
-        ) : error ? (
-          <div className="text-center py-12 mb-8">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
-              <p className="text-red-600 mb-2">Failed to load pricing from server</p>
-              <p className="text-sm text-gray-600">Showing sample data instead</p>
-            </div>
-          </div>
-        ) : null}
-        
         <div className="overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {pricingTiers.map((tier, index) => (
