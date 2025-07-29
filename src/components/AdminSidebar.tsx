@@ -40,13 +40,13 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, toggleSideba
   };
 
   return (
-    <div className={`bg-gray-900 text-white w-64 min-h-screen flex flex-col fixed md:relative z-40 transition-transform duration-300 ease-in-out ${
-      isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+    <div className={`bg-gray-900 text-white w-64 min-h-screen flex flex-col fixed z-50 transition-transform duration-300 ease-in-out overflow-y-auto ${
+      isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
     }`}>
       {/* Mobile Close Button */}
       <button
         onClick={toggleSidebar}
-        className="md:hidden absolute top-4 right-4 text-white hover:text-gray-300"
+        className="md:hidden absolute top-4 right-4 text-white hover:text-gray-300 z-10"
       >
         <X className="h-6 w-6" />
       </button>
@@ -73,6 +73,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, toggleSideba
               <li key={item.name}>
                 <Link
                   to={item.href}
+                  onClick={() => toggleSidebar()}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                     isActive(item.href)
                       ? 'bg-primary-600 text-white'

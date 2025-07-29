@@ -32,4 +32,11 @@
   .container-max {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+
+  /* Admin layout specific styles */
+  @media (min-width: 768px) {
+    .admin-main-content {
+      margin-left: 16rem; /* 256px = w-64 */
+    }
+  }
 }

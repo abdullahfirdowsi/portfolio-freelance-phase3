@@ -33,7 +33,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-100 relative">
+    <div className="min-h-screen bg-gray-100 flex">
       {/* Mobile Menu Button */}
       <button
         onClick={toggleSidebar}
@@ -45,7 +45,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       {/* Overlay for mobile */}
       {isSidebarOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-30"
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={closeSidebar}
         />
       )}
@@ -55,8 +55,8 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         toggleSidebar={toggleSidebar}
       />
       
-      <main className="flex-1 overflow-auto md:ml-0">
-        <div className="p-8">
+      <main className="flex-1 overflow-auto admin-main-content">
+        <div className="p-4 md:p-8 pt-16 md:pt-8">
           {children}
         </div>
       </main>

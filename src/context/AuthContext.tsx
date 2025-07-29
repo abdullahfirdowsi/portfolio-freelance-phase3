@@ -28,6 +28,21 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+// Helper function to decode JWT token
+const decodeJWT = (token: string) => {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error('Error decoding JWT:', error);
+    return null;
+  }
+};
+
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
@@ -38,9 +53,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const savedToken = Cookies.get('admin_token');
     if (savedToken) {
       setToken(savedToken);
-      // You could also decode the JWT to get user info
-      // For now, we'll just set a basic user object
-      setUser({ id: '1', email: 'admin@example.com' });
+      
+      // Decode JWT to get user info
+      const decoded = decodeJWT(savedToken);
+      if (decoded && decoded.user) {
+        setUser({
+          id: decoded.user.id,
+          email: decoded.user.email
+        });
+      } else {
+        // If token is invalid, remove it
+        Cookies.remove('admin_token');
+        setToken(null);
+      }
     }
     setIsLoading(false);
   }, []);
@@ -65,7 +90,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Store token in cookie (expires in 1 day)
       Cookies.set('admin_token', authToken, { expires: 1 });
       setToken(authToken);
-      setUser({ id: '1', email });
+      
+      // Decode JWT to get user info
+      const decoded = decodeJWT(authToken);
+      if (decoded && decoded.user) {
+        setUser({
+          id: decoded.user.id,
+          email: decoded.user.email
+        });
+      }
 
       return true;
     } catch (error) {
