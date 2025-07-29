@@ -59,7 +59,7 @@ const DashboardPage = () => {
           ...prev,
           loading: false,
           error: 'Network error occurred'
-        });
+        }));
       }
     };
 
