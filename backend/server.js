@@ -4,7 +4,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
-import adminRoutes from './routes/adminRoutes.js'; // New import
+import adminRoutes from './routes/adminRoutes.js';
+import publicRoutes from './routes/publicRoutes.js'; // New import
 
 dotenv.config();
 
@@ -42,12 +43,13 @@ app.get('/api/health', (req, res) => {
 
 // Define Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/admin', adminRoutes); // Mount admin routes
+app.use('/api/admin', adminRoutes);
+app.use('/api', publicRoutes); // Mount public routes
 
 // Start server
 app.listen(PORT, () => {
-  console.log(\`🚀 Server is running on port ${PORT}`);
-  console.log(\`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(\`🌐 Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:5173'}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🌐 Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:5173'}`);
 });
 ```
