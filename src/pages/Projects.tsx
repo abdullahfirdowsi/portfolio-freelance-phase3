@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, Github, MessageCircle, Filter } from 'lucide-react';
+import { ExternalLink, Github, Filter } from 'lucide-react';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -172,7 +173,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="bg-secondary-500 hover:bg-secondary-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2"
                   >
-                    <MessageCircle className="h-4 w-4" />
+                    <WhatsAppIcon className="h-4 w-4" />
                     <span>Request This</span>
                   </a>
                 </div>
@@ -197,7 +198,7 @@ const Projects = () => {
                 rel="noopener noreferrer"
                 className="btn-primary flex items-center justify-center space-x-2"
               >
-                <MessageCircle className="h-5 w-5" />
+                <WhatsAppIcon className="h-5 w-5" />
                 <span>Discuss Custom Project</span>
               </a>
               <a href="/contact" className="btn-secondary">

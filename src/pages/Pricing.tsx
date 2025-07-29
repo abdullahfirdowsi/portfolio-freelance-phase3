@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Check, MessageCircle, Clock, Shield, Zap } from 'lucide-react';
+import { Check, Clock, Shield, Zap } from 'lucide-react';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 
 interface PricingTier {
   _id: number;
@@ -214,7 +215,7 @@ const Pricing = () => {
                       : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
                   }`}
                 >
-                  <MessageCircle className="h-5 w-5" />
+                  <WhatsAppIcon className="h-5 w-5" />
                   <span>Get Started</span>
                 </a>
               </div>
@@ -289,7 +290,7 @@ const Pricing = () => {
                 rel="noopener noreferrer"
                 className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
               >
-                <MessageCircle className="h-5 w-5" />
+                <WhatsAppIcon className="h-5 w-5" />
                 <span>Get Custom Quote</span>
               </a>
               <a

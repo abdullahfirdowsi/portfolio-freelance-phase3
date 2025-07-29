@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, MessageCircle, Send, Clock, HelpCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Clock, HelpCircle } from 'lucide-react';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 
 interface SubmitStatus {
   type: 'success' | 'error';
@@ -58,7 +59,7 @@ const Contact = () => {
 
   const contactMethods = [
     {
-      icon: <MessageCircle className="h-6 w-6" />,
+      icon: <WhatsAppIcon className="h-6 w-6" />,
       title: "WhatsApp",
       description: "Get instant response",
       value: "+91-9943980796",
@@ -292,7 +293,7 @@ const Contact = () => {
 
             {/* WhatsApp CTA */}
             <div className="bg-green-50 rounded-lg p-6 border border-green-200 text-center">
-              <MessageCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
+              <WhatsAppIcon className="h-12 w-12 text-green-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Need Immediate Help?
               </h3>
@@ -305,7 +306,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center space-x-2"
               >
-                <MessageCircle className="h-5 w-5" />
+                <WhatsAppIcon className="h-5 w-5" />
                 <span>WhatsApp Now</span>
               </a>
             </div>
@@ -349,7 +350,7 @@ const Contact = () => {
               rel="noopener noreferrer"
               className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center space-x-2"
             >
-              <MessageCircle className="h-5 w-5" />
+              <WhatsAppIcon className="h-5 w-5" />
               <span>Ask on WhatsApp</span>
             </a>
           </div>

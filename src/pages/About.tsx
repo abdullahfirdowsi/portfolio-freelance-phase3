@@ -1,4 +1,5 @@
 import { GraduationCap, Award, Code, Github, Linkedin, Mail, MapPin, Phone, ExternalLink } from 'lucide-react';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 
 const About = () => {
   const education = [
@@ -277,7 +278,7 @@ const About = () => {
                 rel="noopener noreferrer"
                 className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
               >
-                <Phone className="h-5 w-5" />
+                <WhatsAppIcon className="h-5 w-5" />
                 <span>WhatsApp Me</span>
               </a>
               <a
