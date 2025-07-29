@@ -1,4 +1,3 @@
-```javascript
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
@@ -24,4 +23,3 @@ const auth = (req, res, next) => {
 };
 
 export default auth;
-```

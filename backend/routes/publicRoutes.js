@@ -1,4 +1,3 @@
-```javascript
 import express from 'express';
 import Project from '../models/Project.js';
 import Pricing from '../models/Pricing.js';
@@ -55,4 +54,3 @@ router.post('/contact', async (req, res) => {
 });
 
 export default router;
-```

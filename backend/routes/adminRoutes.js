@@ -1,4 +1,3 @@
-```javascript
 import express from 'express';
 import auth from '../middleware/authMiddleware.js';
 import Project from '../models/Project.js';
@@ -292,4 +291,3 @@ router.delete('/contacts/:id', auth, async (req, res) => {
 });
 
 export default router;
-```
