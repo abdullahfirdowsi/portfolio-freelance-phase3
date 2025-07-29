@@ -1,103 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ExternalLink, Github, MessageCircle, Filter } from 'lucide-react';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const filters = ['All', 'AI/ML', 'Web Development', 'Data Science', 'IoT', 'Mobile App'];
 
-  const projects = [
-    {
-      id: 1,
-      title: "Amazon E-Commerce Product Quality Analysis",
-      category: "AI/ML",
-      description: "Interactive website leveraging customer reviews and real-time product data to forecast Amazon product quality using LSTM model.",
-      techStack: ["Python", "LSTM", "Sentiment Analysis", "Scraper API", "Render"],
-      price: "₹12,000",
-      image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=400",
-      features: ["Real-time data scraping", "Sentiment analysis", "LSTM prediction", "Interactive dashboard"]
-    },
-    {
-      id: 2,
-      title: "LeafCare - Cassava Plant Disease Detection",
-      category: "AI/ML",
-      description: "Deep learning approach using CNN and EfficientNetB0 model to classify diseases in cassava leaf images with 96% accuracy.",
-      techStack: ["Python", "CNN", "EfficientNetB0", "Streamlit", "Image Processing"],
-      price: "₹10,000",
-      image: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=400",
-      features: ["96% accuracy", "CNN implementation", "Streamlit interface", "Image classification"]
-    },
-    {
-      id: 3,
-      title: "EduSphere - Personalized Learning Platform",
-      category: "Web Development",
-      description: "Comprehensive platform combining monitoring, programming, grading, and teaching for educational excellence.",
-      techStack: ["React.js", "Flask", "MySQL", "XAMPP", "REST API"],
-      price: "₹15,000",
-      image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400",
-      features: ["User management", "Progress tracking", "Interactive learning", "Grade management"]
-    },
-    {
-      id: 4,
-      title: "Smart Home IoT System",
-      category: "IoT",
-      description: "Complete IoT solution for home automation with mobile app control and real-time monitoring.",
-      techStack: ["Arduino", "ESP32", "React Native", "Firebase", "Sensors"],
-      price: "₹8,000",
-      image: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400",
-      features: ["Mobile control", "Real-time monitoring", "Voice commands", "Energy optimization"]
-    },
-    {
-      id: 5,
-      title: "Stock Price Prediction System",
-      category: "Data Science",
-      description: "Advanced machine learning model for predicting stock prices using historical data and market indicators.",
-      techStack: ["Python", "TensorFlow", "Pandas", "NumPy", "Matplotlib"],
-      price: "₹9,000",
-      image: "https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&w=400",
-      features: ["Time series analysis", "Multiple algorithms", "Data visualization", "Performance metrics"]
-    },
-    {
-      id: 6,
-      title: "E-Commerce Mobile App",
-      category: "Mobile App",
-      description: "Full-featured mobile e-commerce application with payment integration and user management.",
-      techStack: ["React Native", "Node.js", "MongoDB", "Stripe", "Redux"],
-      price: "₹18,000",
-      image: "https://images.pexels.com/photos/3584994/pexels-photo-3584994.jpeg?auto=compress&cs=tinysrgb&w=400",
-      features: ["Payment integration", "User authentication", "Product catalog", "Order management"]
-    },
-    {
-      id: 7,
-      title: "Hospital Management System",
-      category: "Web Development",
-      description: "Comprehensive hospital management system with patient records, appointment scheduling, and billing.",
-      techStack: ["Django", "PostgreSQL", "Bootstrap", "JavaScript", "Chart.js"],
-      price: "₹14,000",
-      image: "https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=400",
-      features: ["Patient management", "Appointment system", "Billing module", "Reports generation"]
-    },
-    {
-      id: 8,
-      title: "Weather Prediction ML Model",
-      category: "AI/ML",
-      description: "Machine learning model for weather prediction using historical weather data and atmospheric parameters.",
-      techStack: ["Python", "Scikit-learn", "Pandas", "Seaborn", "API Integration"],
-      price: "₹7,000",
-      image: "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=400",
-      features: ["Multiple ML algorithms", "Weather API integration", "Data preprocessing", "Accuracy comparison"]
-    },
-    {
-      id: 9,
-      title: "Social Media Analytics Dashboard",
-      category: "Data Science",
-      description: "Real-time social media analytics dashboard with sentiment analysis and engagement metrics.",
-      techStack: ["Python", "Streamlit", "Twitter API", "NLP", "Plotly"],
-      price: "₹11,000",
-      image: "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=400",
-      features: ["Real-time analytics", "Sentiment analysis", "Interactive charts", "Social media APIs"]
-    }
-  ];
+  // Fetch projects from backend
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/projects`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch projects');
+        }
+        const data = await response.json();
+        setProjects(data);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+        console.error('Error fetching projects:', err);
+        // Fallback to sample data if API fails
+        setProjects([
+          {
+            _id: 1,
+            title: "Amazon E-Commerce Product Quality Analysis",
+            category: "AI/ML",
+            description: "Interactive website leveraging customer reviews and real-time product data to forecast Amazon product quality using LSTM model.",
+            techStack: ["Python", "LSTM", "Sentiment Analysis", "Scraper API", "Render"],
+            price: "₹12,000",
+            image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=400",
+            features: ["Real-time data scraping", "Sentiment analysis", "LSTM prediction", "Interactive dashboard"]
+          },
+          {
+            _id: 2,
+            title: "LeafCare - Cassava Plant Disease Detection",
+            category: "AI/ML",
+            description: "Deep learning approach using CNN and EfficientNetB0 model to classify diseases in cassava leaf images with 96% accuracy.",
+            techStack: ["Python", "CNN", "EfficientNetB0", "Streamlit", "Image Processing"],
+            price: "₹10,000",
+            image: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=400",
+            features: ["96% accuracy", "CNN implementation", "Streamlit interface", "Image classification"]
+          }
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   const filteredProjects = activeFilter === 'All' 
     ? projects 
@@ -135,9 +91,23 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+            <p className="mt-4 text-gray-600">Loading projects...</p>
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
+              <p className="text-red-600 mb-2">Failed to load projects from server</p>
+              <p className="text-sm text-gray-600">Showing sample data instead</p>
+            </div>
+          </div>
+        ) : null}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
-            <div key={project.id} className="card overflow-hidden">
+            <div key={project._id || project.id} className="card overflow-hidden">
               <div className="relative">
                 <img
                   src={project.image}
