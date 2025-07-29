@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ExternalLink, Github, Filter } from 'lucide-react';
 import WhatsAppIcon from '../components/WhatsAppIcon';
+import Cookies from 'js-cookie';
+import { api } from '../utils/api';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -23,11 +25,65 @@ const Projects = () => {
         setProjects(data);
         setError(null);
         
-        // Increment view count for each project
+        // Increment view count for each project (only once per day per user)
         data.forEach(async (project: any) => {
           if (project._id) {
+            const cookieName = `project_view_${project._id}`;
+            const hasViewed = Cookies.get(cookieName);
+            
+            // Only increment view if user hasn't viewed this project today
+            if (!hasViewed) {
+              try {
+                await api.incrementProjectView(project._id);
+                // Set cookie to expire in 1 day
+                Cookies.set(cookieName, 'true', { expires: 1 });
+              } catch (err) {
+                console.error('Failed to increment view for project:', project._id, err);
+              }
+            }
+          }
+        });
+      } catch (err) {
+        setError(err.message);
+        console.error('Error fetching projects:', err);
+        // Fallback to sample data if API fails
+        setProjects([
+          {
+            _id: 1,
+            title: "Amazon E-Commerce Product Quality Analysis",
+            category: "AI/ML",
+            description: "Interactive website leveraging customer reviews and real-time product data to forecast Amazon product quality using LSTM model.",
+            techStack: ["Python", "LSTM", "Sentiment Analysis", "Scraper API", "Render"],
+            price: "₹12,000",
+            image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=400",
+            features: ["Real-time data scraping", "Sentiment analysis", "LSTM prediction", "Interactive dashboard"]
+          },
+          {
+            _id: 2,
+            title: "LeafCare - Cassava Plant Disease Detection",
+            category: "AI/ML",
+            description: "Deep learning approach using CNN and EfficientNetB0 model to classify diseases in cassava leaf images with 96% accuracy.",
+            techStack: ["Python", "CNN", "EfficientNetB0", "Streamlit", "Image Processing"],
+            price: "₹10,000",
+            image: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=400",
+            features: ["96% accuracy", "CNN implementation", "Streamlit interface", "Image classification"]
+          }
+        ]);
+        
+        // For fallback data, also implement unique view tracking
+        const fallbackProjects = [
+          { _id: 1 },
+          { _id: 2 }
+        ];
+        
+        fallbackProjects.forEach(async (project) => {
+          const cookieName = `project_view_${project._id}`;
+          const hasViewed = Cookies.get(cookieName);
+          
+          if (!hasViewed) {
             try {
               await api.incrementProjectView(project._id);
+              Cookies.set(cookieName, 'true', { expires: 1 });
             } catch (err) {
               console.error('Failed to increment view for project:', project._id, err);
             }
