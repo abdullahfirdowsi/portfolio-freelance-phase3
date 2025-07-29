@@ -285,8 +285,43 @@ router.delete('/pricing/:id', auth, async (req, res) => {
 // @access  Private (Admin)
 router.get('/contacts', auth, async (req, res) => {
   try {
-    const contacts = await Contact.find().sort({ date: -1 }); // Sort by newest first
-    res.json(contacts);
+    const { search, page = 1, limit = 10, status } = req.query;
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit);
+    const skip = (pageNum - 1) * limitNum;
+
+    // Build search and filter query
+    let query = {};
+    
+    // Add status filter
+    if (status && status !== 'all') {
+      query.status = status;
+    }
+    
+    // Add search functionality
+    if (search) {
+      query.$or = [
+        { name: { $regex: search, $options: 'i' } },
+        { email: { $regex: search, $options: 'i' } },
+        { message: { $regex: search, $options: 'i' } },
+        { projectType: { $regex: search, $options: 'i' } }
+      ];
+    }
+
+    const [contacts, total] = await Promise.all([
+      Contact.find(query)
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limitNum),
+      Contact.countDocuments(query)
+    ]);
+
+    res.json({
+      contacts,
+      total,
+      page: pageNum,
+      totalPages: Math.ceil(total / limitNum)
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

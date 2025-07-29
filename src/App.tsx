@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -123,6 +124,7 @@ function App() {
             </AdminLayout>
           } />
         </Routes>
+        <Toaster />
       </Router>
     </AuthProvider>
   );

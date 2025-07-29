@@ -10,8 +10,37 @@ const router = express.Router();
 // @access  Public
 router.get('/projects', async (req, res) => {
   try {
-    const projects = await Project.find({});
-    res.json(projects);
+    const { search, page = 1, limit = 10 } = req.query;
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit);
+    const skip = (pageNum - 1) * limitNum;
+
+    // Build search query
+    let query = {};
+    if (search) {
+      query = {
+        $or: [
+          { title: { $regex: search, $options: 'i' } },
+          { category: { $regex: search, $options: 'i' } },
+          { description: { $regex: search, $options: 'i' } }
+        ]
+      };
+    }
+
+    const [projects, total] = await Promise.all([
+      Project.find(query)
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limitNum),
+      Project.countDocuments(query)
+    ]);
+
+    res.json({
+      projects,
+      total,
+      page: pageNum,
+      totalPages: Math.ceil(total / limitNum)
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -23,8 +52,36 @@ router.get('/projects', async (req, res) => {
 // @access  Public
 router.get('/pricing', async (req, res) => {
   try {
-    const pricing = await Pricing.find({});
-    res.json(pricing);
+    const { search, page = 1, limit = 10 } = req.query;
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit);
+    const skip = (pageNum - 1) * limitNum;
+
+    // Build search query
+    let query = {};
+    if (search) {
+      query = {
+        $or: [
+          { name: { $regex: search, $options: 'i' } },
+          { description: { $regex: search, $options: 'i' } }
+        ]
+      };
+    }
+
+    const [pricing, total] = await Promise.all([
+      Pricing.find(query)
+        .sort({ order: 1, createdAt: 1 })
+        .skip(skip)
+        .limit(limitNum),
+      Pricing.countDocuments(query)
+    ]);
+
+    res.json({
+      pricing,
+      total,
+      page: pageNum,
+      totalPages: Math.ceil(total / limitNum)
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

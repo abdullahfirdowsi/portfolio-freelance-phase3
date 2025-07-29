@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../../utils/api';
+import { showSuccess, showError } from '../../../utils/toast';
 import { Save, ArrowLeft, Upload, X } from 'lucide-react';
 
 const ProjectFormPage = () => {
@@ -135,11 +136,14 @@ const ProjectFormPage = () => {
 
       if (response.success) {
         navigate('/admin/projects');
+        showSuccess(isEditing ? 'Project updated successfully' : 'Project created successfully');
       } else {
         setError(response.error || 'Failed to save project');
+        showError(response.error || 'Failed to save project');
       }
     } catch (err) {
       setError('Network error occurred');
+      showError('Network error occurred');
     } finally {
       setLoading(false);
     }

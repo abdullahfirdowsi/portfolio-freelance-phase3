@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../../utils/api';
+import { showSuccess, showError } from '../../../utils/toast';
 import { Save, ArrowLeft, X } from 'lucide-react';
 
 const PricingFormPage = () => {
@@ -107,11 +108,14 @@ const PricingFormPage = () => {
 
       if (response.success) {
         navigate('/admin/pricing');
+        showSuccess(isEditing ? 'Pricing tier updated successfully' : 'Pricing tier created successfully');
       } else {
         setError(response.error || 'Failed to save pricing tier');
+        showError(response.error || 'Failed to save pricing tier');
       }
     } catch (err) {
       setError('Network error occurred');
+      showError('Network error occurred');
     } finally {
       setLoading(false);
     }

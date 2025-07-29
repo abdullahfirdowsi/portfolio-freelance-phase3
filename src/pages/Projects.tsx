@@ -17,16 +17,17 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/projects`);
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/projects?limit=100`);
         if (!response.ok) {
           throw new Error('Failed to fetch projects');
         }
         const data = await response.json();
-        setProjects(data);
+        setProjects(data.projects || data);
         setError(null);
         
         // Increment view count for each project (only once per day per user)
-        data.forEach(async (project: any) => {
+        const projectsArray = data.projects || data;
+        projectsArray.forEach(async (project: any) => {
           if (project._id) {
             const cookieName = `project_view_${String(project._id)}`;
             const hasViewed = Cookies.get(cookieName);

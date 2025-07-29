@@ -1,24 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../../../utils/api';
+import { showSuccess, showError } from '../../../utils/toast';
 import { Eye, Trash2, Mail, Phone, Calendar, Filter } from 'lucide-react';
+import SearchInput from '../../../components/SearchInput';
+import Pagination from '../../../components/Pagination';
 
 const ContactListPage = () => {
   const [contacts, setContacts] = useState([]);
+  const [totalContacts, setTotalContacts] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [filter, setFilter] = useState('all');
+  
+  const itemsPerPage = 10;
 
   useEffect(() => {
     fetchContacts();
-  }, []);
+  }, [currentPage, searchQuery, filter]);
 
   const fetchContacts = async () => {
     try {
       setLoading(true);
-      const response = await api.getContacts();
+      const response = await api.getContacts({
+        search: searchQuery,
+        page: currentPage,
+        limit: itemsPerPage,
+        status: filter
+      });
       if (response.success) {
-        setContacts(response.data || []);
+        setContacts(response.data?.contacts || []);
+        setTotalContacts(response.data?.total || 0);
       } else {
         setError(response.error || 'Failed to fetch contacts');
       }
@@ -38,11 +52,13 @@ const ContactListPage = () => {
       const response = await api.deleteContact(id);
       if (response.success) {
         setContacts(contacts.filter((contact: any) => contact._id !== id));
+        setTotalContacts(prev => prev - 1);
+        showSuccess('Contact deleted successfully');
       } else {
-        alert(response.error || 'Failed to delete contact');
+        showError(response.error || 'Failed to delete contact');
       }
     } catch (err) {
-      alert('Network error occurred');
+      showError('Network error occurred');
     }
   };
 
@@ -67,10 +83,21 @@ const ContactListPage = () => {
     }
   };
 
-  const filteredContacts = contacts.filter((contact: any) => {
-    if (filter === 'all') return true;
-    return contact.status === filter;
-  });
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
+  const handleFilterChange = (newFilter: string) => {
+    setFilter(newFilter);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const totalPages = Math.ceil(totalContacts / itemsPerPage);
 
   if (loading) {
     return (
@@ -93,7 +120,7 @@ const ContactListPage = () => {
             <Filter className="h-5 w-5 text-gray-400" />
             <select
               value={filter}
-              onChange={(e) => setFilter(e.target.value)}
+              onChange={(e) => handleFilterChange(e.target.value)}
               className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             >
               <option value="all">All Messages</option>
@@ -107,6 +134,19 @@ const ContactListPage = () => {
         </div>
       </div>
 
+      {/* Search */}
+      <div className="flex justify-between items-center">
+        <SearchInput
+          value={searchQuery}
+          onChange={handleSearch}
+          placeholder="Search contacts by name, email, or message..."
+          className="w-full max-w-md"
+        />
+        <div className="text-sm text-gray-600 ml-4">
+          {totalContacts} contact{totalContacts !== 1 ? 's' : ''} found
+        </div>
+      </div>
+
       {/* Error Message */}
       {error && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4">
@@ -115,17 +155,24 @@ const ContactListPage = () => {
       )}
 
       {/* Contacts List */}
-      {filteredContacts.length === 0 ? (
+      {!loading && contacts.length === 0 ? (
         <div className="text-center py-12">
           <div className="bg-gray-50 rounded-lg p-8">
             <Mail className="h-12 w-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">
-              {filter === 'all' ? 'No messages yet' : `No ${filter} messages`}
+              {searchQuery 
+                ? 'No contacts found' 
+                : filter === 'all' 
+                  ? 'No messages yet' 
+                  : `No ${filter} messages`
+              }
             </h3>
             <p className="text-gray-600">
-              {filter === 'all' 
-                ? 'Contact messages will appear here when clients reach out'
-                : `No messages with ${filter} status found`
+              {searchQuery
+                ? `No contacts match "${searchQuery}". Try a different search term.`
+                : filter === 'all' 
+                  ? 'Contact messages will appear here when clients reach out'
+                  : `No messages with ${filter} status found`
               }
             </p>
           </div>
@@ -157,7 +204,7 @@ const ContactListPage = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {filteredContacts.map((contact: any) => (
+                {contacts.map((contact: any) => (
                   <tr key={contact._id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
@@ -221,18 +268,16 @@ const ContactListPage = () => {
         </div>
       )}
 
-      {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        {['new', 'read', 'replied', 'in-progress', 'completed'].map((status) => {
-          const count = contacts.filter((contact: any) => contact.status === status).length;
-          return (
-            <div key={status} className="bg-white rounded-lg shadow-md p-4 text-center">
-              <div className="text-2xl font-bold text-gray-900">{count}</div>
-              <div className="text-sm text-gray-600 capitalize">{status}</div>
-            </div>
-          );
-        })}
-      </div>
+      {/* Pagination */}
+      {!loading && contacts.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          totalItems={totalContacts}
+          itemsPerPage={itemsPerPage}
+        />
+      )}
     </div>
   );
 };

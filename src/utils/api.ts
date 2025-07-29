@@ -41,13 +41,25 @@ class ApiService {
   }
 
   // Public endpoints
-  async getProjects(): Promise<ApiResponse> {
-    const response = await fetch(`${API_BASE_URL}/projects`);
+  async getProjects(params?: { search?: string; page?: number; limit?: number }): Promise<ApiResponse> {
+    const queryParams = new URLSearchParams();
+    if (params?.search) queryParams.append('search', params.search);
+    if (params?.page) queryParams.append('page', params.page.toString());
+    if (params?.limit) queryParams.append('limit', params.limit.toString());
+    
+    const url = `${API_BASE_URL}/projects${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+    const response = await fetch(url);
     return this.handleResponse(response);
   }
 
-  async getPricing(): Promise<ApiResponse> {
-    const response = await fetch(`${API_BASE_URL}/pricing`);
+  async getPricing(params?: { search?: string; page?: number; limit?: number }): Promise<ApiResponse> {
+    const queryParams = new URLSearchParams();
+    if (params?.search) queryParams.append('search', params.search);
+    if (params?.page) queryParams.append('page', params.page.toString());
+    if (params?.limit) queryParams.append('limit', params.limit.toString());
+    
+    const url = `${API_BASE_URL}/pricing${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+    const response = await fetch(url);
     return this.handleResponse(response);
   }
 
@@ -131,8 +143,15 @@ class ApiService {
   }
 
   // Admin endpoints - Contacts
-  async getContacts(): Promise<ApiResponse> {
-    const response = await fetch(`${API_BASE_URL}/admin/contacts`, {
+  async getContacts(params?: { search?: string; page?: number; limit?: number; status?: string }): Promise<ApiResponse> {
+    const queryParams = new URLSearchParams();
+    if (params?.search) queryParams.append('search', params.search);
+    if (params?.page) queryParams.append('page', params.page.toString());
+    if (params?.limit) queryParams.append('limit', params.limit.toString());
+    if (params?.status && params.status !== 'all') queryParams.append('status', params.status);
+    
+    const url = `${API_BASE_URL}/admin/contacts${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+    const response = await fetch(url, {
       headers: this.getAuthHeaders(),
     });
     return this.handleResponse(response);

@@ -1,23 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../../../utils/api';
+import { showSuccess, showError } from '../../../utils/toast';
 import { Plus, Edit, Trash2, Eye, ExternalLink } from 'lucide-react';
+import SearchInput from '../../../components/SearchInput';
+import Pagination from '../../../components/Pagination';
 
 const ProjectListPage = () => {
   const [projects, setProjects] = useState([]);
+  const [totalProjects, setTotalProjects] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  
+  const itemsPerPage = 9;
 
   useEffect(() => {
     fetchProjects();
-  }, []);
+  }, [currentPage, searchQuery]);
 
   const fetchProjects = async () => {
     try {
       setLoading(true);
-      const response = await api.getProjects();
+      const response = await api.getProjects({
+        search: searchQuery,
+        page: currentPage,
+        limit: itemsPerPage
+      });
       if (response.success) {
-        setProjects(response.data || []);
+        setProjects(response.data?.projects || []);
+        setTotalProjects(response.data?.total || 0);
       } else {
         setError(response.error || 'Failed to fetch projects');
       }
@@ -37,13 +50,26 @@ const ProjectListPage = () => {
       const response = await api.deleteProject(id);
       if (response.success) {
         setProjects(projects.filter((project: any) => project._id !== id));
+        setTotalProjects(prev => prev - 1);
+        showSuccess('Project deleted successfully');
       } else {
-        alert(response.error || 'Failed to delete project');
+        showError(response.error || 'Failed to delete project');
       }
     } catch (err) {
-      alert('Network error occurred');
+      showError('Network error occurred');
     }
   };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const totalPages = Math.ceil(totalProjects / itemsPerPage);
 
   if (loading) {
     return (
@@ -70,6 +96,19 @@ const ProjectListPage = () => {
         </Link>
       </div>
 
+      {/* Search */}
+      <div className="flex justify-between items-center">
+        <SearchInput
+          value={searchQuery}
+          onChange={handleSearch}
+          placeholder="Search projects by title or category..."
+          className="w-full max-w-md"
+        />
+        <div className="text-sm text-gray-600 ml-4">
+          {totalProjects} project{totalProjects !== 1 ? 's' : ''} found
+        </div>
+      </div>
+
       {/* Error Message */}
       {error && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4">
@@ -78,11 +117,19 @@ const ProjectListPage = () => {
       )}
 
       {/* Projects Grid */}
-      {projects.length === 0 ? (
+      {!loading && projects.length === 0 ? (
         <div className="text-center py-12">
           <div className="bg-gray-50 rounded-lg p-8">
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
-            <p className="text-gray-600 mb-4">Get started by creating your first project</p>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              {searchQuery ? 'No projects found' : 'No projects yet'}
+            </h3>
+            <p className="text-gray-600 mb-4">
+              {searchQuery 
+                ? `No projects match "${searchQuery}". Try a different search term.`
+                : 'Get started by creating your first project'
+              }
+            </p>
+            {!searchQuery && (
             <Link
               to="/admin/projects/new"
               className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg font-medium transition-colors inline-flex items-center space-x-2"
@@ -90,6 +137,7 @@ const ProjectListPage = () => {
               <Plus className="h-5 w-5" />
               <span>Add Your First Project</span>
             </Link>
+            )}
           </div>
         </div>
       ) : (
@@ -147,6 +195,17 @@ const ProjectListPage = () => {
             </div>
           ))}
         </div>
+      )}
+
+      {/* Pagination */}
+      {!loading && projects.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          totalItems={totalProjects}
+          itemsPerPage={itemsPerPage}
+        />
       )}
     </div>
   );

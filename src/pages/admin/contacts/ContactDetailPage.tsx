@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../../utils/api';
+import { showSuccess, showError } from '../../../utils/toast';
 import { 
   ArrowLeft, 
   Mail, 
@@ -55,11 +56,12 @@ const ContactDetailPage = () => {
       const response = await api.deleteContact(contact._id);
       if (response.success) {
         navigate('/admin/contacts');
+        showSuccess('Contact deleted successfully');
       } else {
-        alert(response.error || 'Failed to delete contact');
+        showError(response.error || 'Failed to delete contact');
       }
     } catch (err) {
-      alert('Network error occurred');
+      showError('Network error occurred');
     }
   };
 
@@ -71,11 +73,12 @@ const ContactDetailPage = () => {
       const response = await api.updateContactStatus(contact._id, newStatus);
       if (response.success) {
         setContact({ ...contact, status: newStatus });
+        showSuccess('Contact status updated successfully');
       } else {
-        alert(response.error || 'Failed to update status');
+        showError(response.error || 'Failed to update status');
       }
     } catch (err) {
-      alert('Network error occurred');
+      showError('Network error occurred');
     } finally {
       setUpdating(false);
     }
@@ -89,11 +92,12 @@ const ContactDetailPage = () => {
       const response = await api.updateContactPriority(contact._id, newPriority);
       if (response.success) {
         setContact({ ...contact, priority: newPriority });
+        showSuccess('Contact priority updated successfully');
       } else {
-        alert(response.error || 'Failed to update priority');
+        showError(response.error || 'Failed to update priority');
       }
     } catch (err) {
-      alert('Network error occurred');
+      showError('Network error occurred');
     } finally {
       setUpdating(false);
     }
@@ -113,11 +117,12 @@ const ContactDetailPage = () => {
         }];
         setContact({ ...contact, notes: updatedNotes });
         setNewNote('');
+        showSuccess('Note added successfully');
       } else {
-        alert(response.error || 'Failed to add note');
+        showError(response.error || 'Failed to add note');
       }
     } catch (err) {
-      alert('Network error occurred');
+      showError('Network error occurred');
     } finally {
       setAddingNote(false);
     }
