@@ -153,6 +153,33 @@ class ApiService {
     return this.handleResponse(response);
   }
 
+  async updateContactStatus(id: string, status: string): Promise<ApiResponse> {
+    const response = await fetch(`${API_BASE_URL}/admin/contacts/${id}/status`, {
+      method: 'PUT',
+      headers: this.getAuthHeaders(),
+      body: JSON.stringify({ status }),
+    });
+    return this.handleResponse(response);
+  }
+
+  async updateContactPriority(id: string, priority: string): Promise<ApiResponse> {
+    const response = await fetch(`${API_BASE_URL}/admin/contacts/${id}/priority`, {
+      method: 'PUT',
+      headers: this.getAuthHeaders(),
+      body: JSON.stringify({ priority }),
+    });
+    return this.handleResponse(response);
+  }
+
+  async addContactNote(id: string, content: string): Promise<ApiResponse> {
+    const response = await fetch(`${API_BASE_URL}/admin/contacts/${id}/notes`, {
+      method: 'POST',
+      headers: this.getAuthHeaders(),
+      body: JSON.stringify({ content }),
+    });
+    return this.handleResponse(response);
+  }
+
   // File upload
   async uploadImage(file: File): Promise<ApiResponse> {
     const formData = new FormData();

@@ -15,7 +15,13 @@ const ProjectFormPage = () => {
     techStack: [''],
     price: '',
     image: '',
-    features: ['']
+    features: [''],
+    status: 'active',
+    difficulty: 'intermediate',
+    duration: '',
+    githubUrl: '',
+    liveUrl: '',
+    tags: ['']
   });
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -40,7 +46,13 @@ const ProjectFormPage = () => {
             techStack: project.techStack || [''],
             price: project.price || '',
             image: project.image || '',
-            features: project.features || ['']
+            features: project.features || [''],
+            status: project.status || 'active',
+            difficulty: project.difficulty || 'intermediate',
+            duration: project.duration || '',
+            githubUrl: project.githubUrl || '',
+            liveUrl: project.liveUrl || '',
+            tags: project.tags || ['']
           });
         }
       }
@@ -56,7 +68,7 @@ const ProjectFormPage = () => {
     });
   };
 
-  const handleArrayChange = (index: number, value: string, field: 'techStack' | 'features') => {
+  const handleArrayChange = (index: number, value: string, field: 'techStack' | 'features' | 'tags') => {
     const newArray = [...formData[field]];
     newArray[index] = value;
     setFormData({
@@ -65,14 +77,14 @@ const ProjectFormPage = () => {
     });
   };
 
-  const addArrayItem = (field: 'techStack' | 'features') => {
+  const addArrayItem = (field: 'techStack' | 'features' | 'tags') => {
     setFormData({
       ...formData,
       [field]: [...formData[field], '']
     });
   };
 
-  const removeArrayItem = (index: number, field: 'techStack' | 'features') => {
+  const removeArrayItem = (index: number, field: 'techStack' | 'features' | 'tags') => {
     const newArray = formData[field].filter((_, i) => i !== index);
     setFormData({
       ...formData,
@@ -112,7 +124,8 @@ const ProjectFormPage = () => {
     const cleanedData = {
       ...formData,
       techStack: formData.techStack.filter(tech => tech.trim() !== ''),
-      features: formData.features.filter(feature => feature.trim() !== '')
+      features: formData.features.filter(feature => feature.trim() !== ''),
+      tags: formData.tags.filter(tag => tag.trim() !== '')
     };
 
     try {
@@ -200,6 +213,54 @@ const ProjectFormPage = () => {
           </div>
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Status
+            </label>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            >
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+              <option value="featured">Featured</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Difficulty Level
+            </label>
+            <select
+              name="difficulty"
+              value={formData.difficulty}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            >
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Duration
+            </label>
+            <input
+              type="text"
+              name="duration"
+              value={formData.duration}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              placeholder="e.g., 2 weeks"
+            />
+          </div>
+        </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Description *
@@ -215,22 +276,53 @@ const ProjectFormPage = () => {
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Price *
-          </label>
-          <input
-            type="text"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            placeholder="e.g., ₹10,000"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Price *
+            </label>
+            <input
+              type="text"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              placeholder="e.g., ₹10,000"
+            />
+          </div>
         </div>
 
-        {/* Image Upload */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              GitHub URL
+            </label>
+            <input
+              type="url"
+              name="githubUrl"
+              value={formData.githubUrl}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              placeholder="https://github.com/username/repo"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Live Demo URL
+            </label>
+            <input
+              type="url"
+              name="liveUrl"
+              value={formData.liveUrl}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              placeholder="https://your-demo.com"
+            />
+          </div>
+        </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Project Image *
@@ -351,6 +443,42 @@ const ProjectFormPage = () => {
               className="text-primary-600 hover:text-primary-700 font-medium"
             >
               + Add Feature
+            </button>
+          </div>
+        </div>
+
+        {/* Tags */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Tags
+          </label>
+          <div className="space-y-2">
+            {formData.tags.map((tag, index) => (
+              <div key={index} className="flex space-x-2">
+                <input
+                  type="text"
+                  value={tag}
+                  onChange={(e) => handleArrayChange(index, e.target.value, 'tags')}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  placeholder="e.g., machine-learning, python"
+                />
+                {formData.tags.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => removeArrayItem(index, 'tags')}
+                    className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                )}
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => addArrayItem('tags')}
+              className="text-primary-600 hover:text-primary-700 font-medium"
+            >
+              + Add Tag
             </button>
           </div>
         </div>

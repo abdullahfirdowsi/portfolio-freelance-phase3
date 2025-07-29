@@ -9,7 +9,9 @@ import {
   MessageSquare, 
   User,
   Trash2,
-  ExternalLink
+  ExternalLink,
+  Save,
+  Plus
 } from 'lucide-react';
 
 const ContactDetailPage = () => {
@@ -18,6 +20,9 @@ const ContactDetailPage = () => {
   const [contact, setContact] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [updating, setUpdating] = useState(false);
+  const [newNote, setNewNote] = useState('');
+  const [addingNote, setAddingNote] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -55,6 +60,66 @@ const ContactDetailPage = () => {
       }
     } catch (err) {
       alert('Network error occurred');
+    }
+  };
+
+  const handleStatusChange = async (newStatus: string) => {
+    if (!contact) return;
+
+    try {
+      setUpdating(true);
+      const response = await api.updateContactStatus(contact._id, newStatus);
+      if (response.success) {
+        setContact({ ...contact, status: newStatus });
+      } else {
+        alert(response.error || 'Failed to update status');
+      }
+    } catch (err) {
+      alert('Network error occurred');
+    } finally {
+      setUpdating(false);
+    }
+  };
+
+  const handlePriorityChange = async (newPriority: string) => {
+    if (!contact) return;
+
+    try {
+      setUpdating(true);
+      const response = await api.updateContactPriority(contact._id, newPriority);
+      if (response.success) {
+        setContact({ ...contact, priority: newPriority });
+      } else {
+        alert(response.error || 'Failed to update priority');
+      }
+    } catch (err) {
+      alert('Network error occurred');
+    } finally {
+      setUpdating(false);
+    }
+  };
+
+  const handleAddNote = async () => {
+    if (!contact || !newNote.trim()) return;
+
+    try {
+      setAddingNote(true);
+      const response = await api.addContactNote(contact._id, newNote.trim());
+      if (response.success) {
+        const updatedNotes = [...(contact.notes || []), {
+          content: newNote.trim(),
+          addedAt: new Date().toISOString(),
+          addedBy: 'admin'
+        }];
+        setContact({ ...contact, notes: updatedNotes });
+        setNewNote('');
+      } else {
+        alert(response.error || 'Failed to add note');
+      }
+    } catch (err) {
+      alert('Network error occurred');
+    } finally {
+      setAddingNote(false);
     }
   };
 
@@ -216,16 +281,60 @@ const ContactDetailPage = () => {
 
               <div>
                 <p className="text-sm text-gray-600">Status</p>
-                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium mt-1 ${getStatusColor(contact.status)}`}>
-                  {contact.status}
-                </span>
+                <div className="mt-1">
+                  <select
+                    value={contact.status}
+                    onChange={(e) => handleStatusChange(e.target.value)}
+                    disabled={updating}
+                    className="text-xs font-medium px-2.5 py-0.5 rounded-full border-0 focus:ring-2 focus:ring-primary-500 disabled:opacity-50"
+                    style={{
+                      backgroundColor: getStatusColor(contact.status).includes('blue') ? '#dbeafe' : 
+                                     getStatusColor(contact.status).includes('gray') ? '#f3f4f6' :
+                                     getStatusColor(contact.status).includes('green') ? '#dcfce7' :
+                                     getStatusColor(contact.status).includes('yellow') ? '#fef3c7' :
+                                     getStatusColor(contact.status).includes('purple') ? '#f3e8ff' : '#f3f4f6',
+                      color: getStatusColor(contact.status).includes('blue') ? '#1e40af' : 
+                             getStatusColor(contact.status).includes('gray') ? '#374151' :
+                             getStatusColor(contact.status).includes('green') ? '#166534' :
+                             getStatusColor(contact.status).includes('yellow') ? '#92400e' :
+                             getStatusColor(contact.status).includes('purple') ? '#7c3aed' : '#374151'
+                    }}
+                  >
+                    <option value="new">New</option>
+                    <option value="read">Read</option>
+                    <option value="replied">Replied</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="archived">Archived</option>
+                  </select>
+                </div>
               </div>
 
               <div>
                 <p className="text-sm text-gray-600">Priority</p>
-                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium mt-1 ${getPriorityColor(contact.priority)}`}>
-                  {contact.priority}
-                </span>
+                <div className="mt-1">
+                  <select
+                    value={contact.priority}
+                    onChange={(e) => handlePriorityChange(e.target.value)}
+                    disabled={updating}
+                    className="text-xs font-medium px-2.5 py-0.5 rounded-full border-0 focus:ring-2 focus:ring-primary-500 disabled:opacity-50"
+                    style={{
+                      backgroundColor: getPriorityColor(contact.priority).includes('red') ? '#fef2f2' : 
+                                     getPriorityColor(contact.priority).includes('orange') ? '#fff7ed' :
+                                     getPriorityColor(contact.priority).includes('yellow') ? '#fefce8' :
+                                     getPriorityColor(contact.priority).includes('green') ? '#f0fdf4' : '#f9fafb',
+                      color: getPriorityColor(contact.priority).includes('red') ? '#dc2626' : 
+                             getPriorityColor(contact.priority).includes('orange') ? '#ea580c' :
+                             getPriorityColor(contact.priority).includes('yellow') ? '#ca8a04' :
+                             getPriorityColor(contact.priority).includes('green') ? '#16a34a' : '#6b7280'
+                    }}
+                  >
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="urgent">Urgent</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -270,21 +379,61 @@ const ContactDetailPage = () => {
           </div>
 
           {/* Notes Section */}
-          {contact.notes && contact.notes.length > 0 && (
-            <div className="bg-white rounded-lg shadow-md p-6 mt-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Notes</h2>
+          <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Internal Notes</h2>
+            
+            {/* Add Note Form */}
+            <div className="mb-6">
+              <div className="flex space-x-2">
+                <textarea
+                  value={newNote}
+                  onChange={(e) => setNewNote(e.target.value)}
+                  placeholder="Add an internal note..."
+                  rows={3}
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+                />
+                <button
+                  onClick={handleAddNote}
+                  disabled={!newNote.trim() || addingNote}
+                  className="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {addingNote ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      <span>Adding...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="h-4 w-4" />
+                      <span>Add Note</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+            
+            {/* Existing Notes */}
+            {contact.notes && contact.notes.length > 0 ? (
               <div className="space-y-3">
                 {contact.notes.map((note: any, index: number) => (
-                  <div key={index} className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-                    <p className="text-gray-800">{note.content}</p>
+                  <div key={index} className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                    <p className="text-gray-800 whitespace-pre-wrap">{note.content}</p>
                     <p className="text-xs text-gray-500 mt-2">
-                      Added by {note.addedBy} on {new Date(note.addedAt).toLocaleDateString()}
+                      Added by {note.addedBy} on {new Date(note.addedAt).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
                     </p>
                   </div>
                 ))}
               </div>
-            </div>
-          )}
+            ) : (
+              <p className="text-gray-500 text-center py-4">No notes added yet</p>
+            )}
+          </div>
         </div>
       </div>
     </div>

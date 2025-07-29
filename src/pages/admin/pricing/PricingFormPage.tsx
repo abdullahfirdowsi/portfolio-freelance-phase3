@@ -17,7 +17,9 @@ const PricingFormPage = () => {
     category: '',
     deliveryTime: '',
     revisions: 1,
-    support: 'standard'
+    support: 'standard',
+    isActive: true,
+    order: 0
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -43,7 +45,9 @@ const PricingFormPage = () => {
             category: pricing.category || '',
             deliveryTime: pricing.deliveryTime || '',
             revisions: pricing.revisions || 1,
-            support: pricing.support || 'standard'
+            support: pricing.support || 'standard',
+            isActive: pricing.isActive !== undefined ? pricing.isActive : true,
+            order: pricing.order || 0
           });
         }
       }
@@ -241,23 +245,55 @@ const PricingFormPage = () => {
           </div>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Support Level
-          </label>
-          <select
-            name="support"
-            value={formData.support}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-          >
-            <option value="basic">Basic</option>
-            <option value="standard">Standard</option>
-            <option value="premium">Premium</option>
-          </select>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Support Level
+            </label>
+            <select
+              name="support"
+              value={formData.support}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            >
+              <option value="basic">Basic</option>
+              <option value="standard">Standard</option>
+              <option value="premium">Premium</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Display Order
+            </label>
+            <input
+              type="number"
+              name="order"
+              value={formData.order}
+              onChange={handleChange}
+              min="0"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              placeholder="0"
+            />
+          </div>
+
+          <div className="flex items-end">
+            <div className="flex items-center space-x-3">
+              <input
+                type="checkbox"
+                id="isActive"
+                name="isActive"
+                checked={formData.isActive}
+                onChange={handleChange}
+                className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              />
+              <label htmlFor="isActive" className="text-sm font-medium text-gray-700">
+                Active (visible to users)
+              </label>
+            </div>
+          </div>
         </div>
 
-        {/* Features */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Features *

@@ -326,4 +326,66 @@ router.delete('/contacts/:id', auth, async (req, res) => {
   }
 });
 
+// @route   PUT /api/admin/contacts/:id/status
+// @desc    Update contact status
+// @access  Private (Admin)
+router.put('/contacts/:id/status', auth, async (req, res) => {
+  try {
+    const { status } = req.body;
+    const contact = await Contact.findById(req.params.id);
+    if (!contact) {
+      return res.status(404).json({ message: 'Contact submission not found' });
+    }
+    
+    contact.status = status;
+    await contact.save();
+    
+    res.json({ message: 'Contact status updated successfully', contact });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// @route   PUT /api/admin/contacts/:id/priority
+// @desc    Update contact priority
+// @access  Private (Admin)
+router.put('/contacts/:id/priority', auth, async (req, res) => {
+  try {
+    const { priority } = req.body;
+    const contact = await Contact.findById(req.params.id);
+    if (!contact) {
+      return res.status(404).json({ message: 'Contact submission not found' });
+    }
+    
+    contact.priority = priority;
+    await contact.save();
+    
+    res.json({ message: 'Contact priority updated successfully', contact });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// @route   POST /api/admin/contacts/:id/notes
+// @desc    Add note to contact
+// @access  Private (Admin)
+router.post('/contacts/:id/notes', auth, async (req, res) => {
+  try {
+    const { content } = req.body;
+    const contact = await Contact.findById(req.params.id);
+    if (!contact) {
+      return res.status(404).json({ message: 'Contact submission not found' });
+    }
+    
+    await contact.addNote(content);
+    
+    res.json({ message: 'Note added successfully', contact });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 export default router;
