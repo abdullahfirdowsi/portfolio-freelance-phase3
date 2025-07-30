@@ -75,7 +75,7 @@ const Home = () => {
         </div>
         
         <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center text-left py-6 lg:py-20 xl:py-24 min-h-screen lg:min-h-[700px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 lg:items-center text-left pt-20 pb-12 lg:py-20 xl:py-24 lg:min-h-[700px]">
             <div className="animate-slide-up space-y-4 lg:space-y-8">
               <div className="space-y-3 lg:space-y-6">
                 <div className="inline-flex items-center space-x-2 lg:space-x-3 bg-primary-50 text-primary-700 px-4 py-2 lg:px-5 lg:py-3 rounded-full text-sm lg:text-base font-semibold border border-primary-100">
