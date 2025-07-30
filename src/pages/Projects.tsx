@@ -85,7 +85,7 @@ const Projects = () => {
           category: "AI/ML",
           description: "Interactive website leveraging customer reviews and real-time product data to forecast Amazon product quality using LSTM model.",
           techStack: ["Python", "LSTM", "Sentiment Analysis", "Scraper API", "Render"],
-          price: "₹12,000",
+          price: "₹2,000",
           image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=400",
           features: ["Real-time data scraping", "Sentiment analysis", "LSTM prediction", "Interactive dashboard"]
         },
@@ -95,9 +95,19 @@ const Projects = () => {
           category: "AI/ML",
           description: "Deep learning approach using CNN and EfficientNetB0 model to classify diseases in cassava leaf images with 96% accuracy.",
           techStack: ["Python", "CNN", "EfficientNetB0", "Streamlit", "Image Processing"],
-          price: "₹10,000",
+          price: "₹1,000",
           image: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=400",
           features: ["96% accuracy", "CNN implementation", "Streamlit interface", "Image classification"]
+        },
+        {
+          _id: 3,
+          title: "EduSphere - Tutor’s eLearning Platform",
+          category: "Web Development",
+          description: "An integrated web platform for educators to manage courses, coding, and resources in one place, promoting personalized and effective learning.",
+          techStack: ["React.js", "Python", "Django", "JavaScript"],
+          price: "₹3,500",
+          image: "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=400",
+          features: ["Unified self-learning platform", "Tutor-focused functionality", "Content aggregation", "Modern UI/UX"]
         }
       ];
       
