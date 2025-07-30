@@ -9,14 +9,14 @@ const Home = () => {
       title: "Mini Projects",
       description: "Quick turnaround projects perfect for semester submissions",
       price: "₹500 - ₹2.5K",
-      gradient: "from-primary-500 to-primary-600"
+      gradient: "from-primary-600 to-primary-700"
     },
     {
       icon: <Database className="h-8 w-8" />,
       title: "Major Projects",
       description: "Comprehensive final year projects with complete documentation",
       price: "₹3K - ₹5K",
-      gradient: "from-secondary-500 to-secondary-600"
+      gradient: "from-primary-600 to-primary-700"
     },
     {
       icon: <Brain className="h-8 w-8" />,
@@ -30,7 +30,7 @@ const Home = () => {
       title: "Web Development",
       description: "Full-stack web applications with modern frameworks for your business needs",
       price: "₹5K - ₹10K",
-      gradient: "from-secondary-600 to-secondary-700"
+      gradient: "from-primary-600 to-primary-700"
     }
   ];
 
