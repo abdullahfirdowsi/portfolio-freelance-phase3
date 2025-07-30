@@ -162,14 +162,14 @@ const Contact = () => {
   };
 
   const contactMethods = [
-    {
-      icon: <WhatsAppIcon className="h-6 w-6 text-green-600" />,
-      title: "WhatsApp",
-      description: "Get instant response",
-      value: "+91-9943980796",
-      link: "https://wa.me/919943980796",
-      primary: true
-    },
+    // {
+    //   icon: <WhatsAppIcon className="h-6 w-6 text-green-600" />,
+    //   title: "WhatsApp",
+    //   description: "Get instant response",
+    //   value: "+91-9943980796",
+    //   link: "https://wa.me/919943980796",
+    //   primary: true
+    // },
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
@@ -316,11 +316,8 @@ const Contact = () => {
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all ${
                     formErrors.phone ? 'border-red-500 bg-red-50' : 'border-gray-300'
                   }`}
-                  placeholder="9876543210"
+                  placeholder="Enter your phone number"
                 />
-                <p className="mt-1 text-xs text-gray-500">
-                  Enter 10-digit Indian mobile number (digits only)
-                </p>
                 {formErrors.phone && (
                   <p className="mt-1 text-sm text-red-600 flex items-center">
                     <span className="mr-1">⚠</span>
@@ -434,15 +431,16 @@ const Contact = () => {
             </div>
 
             {/* Quick Response Time */}
+            
             <div className="bg-secondary-50 rounded-lg p-6 border border-secondary-200">
               <div className="flex items-center space-x-3 mb-4">
                 <Clock className="h-6 w-6 text-secondary-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Quick Response Time</h3>
               </div>
               <ul className="space-y-2 text-gray-700">
-                <li>• WhatsApp: Within 1 hour (9 AM - 10 PM)</li>
-                <li>• Email: Within 6 hours</li>
-                <li>• Phone: Available 9 AM - 8 PM</li>
+                <li> Email: Within 2 hours</li>
+                <li> Phone: Available 9 AM - 8 PM</li>
+                {/* <li> WhatsApp: Within 1 hour (9 AM - 10 PM)</li> */}
               </ul>
             </div>
 
