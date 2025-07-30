@@ -70,7 +70,7 @@ const About = () => {
             About Me
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Passionate AI & Data Science Expert | Your Trusted Project Development Partner
+           Your Trusted Project Development Partner
           </p>
         </div>
 
@@ -88,8 +88,7 @@ const About = () => {
               <p>
                 My journey in technology began with a curiosity about how machines can learn and make decisions. 
                 This curiosity led me to explore various domains including machine learning, web development, 
-                data analysis, and research. Over the years, I've completed numerous projects and helped 10+ 
-                students with their academic projects.
+                data analysis, and research. 
               </p>
               <p>
                 What sets me apart is my commitment to not just delivering projects, but ensuring students 
