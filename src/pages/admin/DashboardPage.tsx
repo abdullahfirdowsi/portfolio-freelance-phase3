@@ -335,7 +335,6 @@ const DashboardPage = () => {
               )}
             </div>
             <div className="text-sm text-gray-600">Contact growth (30 days)</div>
-            <div className="text-sm text-gray-600">Contact growth (24 hours)</div>
           </div>
         </div>
       </div>
