@@ -67,7 +67,7 @@ const Home = () => {
   return (
     <div className="animate-fade-in overflow-hidden">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 min-h-screen flex items-center py-12 sm:py-16 lg:py-24 pt-[72px] overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 min-h-screen flex items-center py-6 sm:py-16 lg:py-24 pt-[72px] overflow-hidden">
         {/* Subtle Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary-100/30 to-primary-200/20 rounded-full blur-3xl"></div>
@@ -76,20 +76,20 @@ const Home = () => {
         
         <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="animate-slide-up space-y-6 sm:space-y-8">
-              <div className="space-y-4 sm:space-y-6">
+            <div className="animate-slide-up space-y-4 sm:space-y-8">
+              <div className="space-y-3 sm:space-y-6">
                 <div className="inline-flex items-center space-x-2 bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold border border-primary-100">
                   <Sparkles className="h-4 w-4" />
                   <span>Professional Project Development</span>
                 </div>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-tight">
                   Get Your{' '}
                   <span className="bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 bg-clip-text text-transparent">
                     College Projects
                   </span>{' '}
                   Done
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl font-medium">
+                <p className="text-lg sm:text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl font-medium">
                   Mini, Major, IEEE Papers — Quick delivery with documentation.
                 </p>
               </div>
