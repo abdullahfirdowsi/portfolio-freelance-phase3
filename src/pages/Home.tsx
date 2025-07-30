@@ -75,17 +75,17 @@ const Home = () => {
         </div>
         
         <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 lg:items-center text-left pt-20 pb-12 lg:py-20 xl:py-24 lg:min-h-[700px]">
-            <div className="animate-slide-up space-y-4 lg:space-y-8">
-              <div className="space-y-3 lg:space-y-6">
-                <div className="inline-flex items-center space-x-2 lg:space-x-3 bg-primary-50 text-primary-700 px-4 py-2 lg:px-5 lg:py-3 rounded-full text-sm lg:text-base font-semibold border border-primary-100">
-                  <Sparkles className="h-4 w-4 lg:h-5 lg:w-5" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 lg:items-center text-left min-h-screen py-16 lg:py-20 xl:py-24 lg:min-h-[700px]">
+            <div className="animate-slide-up space-y-8">
+              <div className="space-y-6">
+                <div className="inline-flex items-center space-x-3 bg-primary-50 text-primary-700 px-5 py-3 rounded-full text-base font-semibold border border-primary-100">
+                  <Sparkles className="h-5 w-5" />
                   <span>Professional Project Development</span>
                 </div>
                 
                 {/* Mobile: Stacked text for full screen coverage */}
                 <div className="block lg:hidden">
-                  <h1 className="text-4xl sm:text-5xl font-black text-gray-900 leading-tight space-y-2">
+                  <h1 className="text-5xl sm:text-6xl font-black text-gray-900 leading-tight space-y-2">
                     <div>Get Your</div>
                     <div className="bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 bg-clip-text text-transparent">
                       College Projects
@@ -96,7 +96,7 @@ const Home = () => {
                 
                 {/* Desktop: Inline text */}
                 <div className="hidden lg:block">
-                  <h1 className="text-5xl xl:text-6xl 2xl:text-7xl font-black text-gray-900 leading-tight">
+                  <h1 className="text-6xl xl:text-7xl 2xl:text-8xl font-black text-gray-900 leading-tight">
                     Get Your{' '}
                     <span className="bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 bg-clip-text text-transparent">
                       College Projects
@@ -105,25 +105,25 @@ const Home = () => {
                   </h1>
                 </div>
                 
-                <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl font-medium">
+                <p className="text-xl sm:text-2xl text-gray-600 leading-relaxed max-w-2xl font-medium">
                   Mini, Major, IEEE Papers — Quick delivery with documentation.
                 </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 items-stretch pt-4">
+              <div className="flex flex-col sm:flex-row gap-6 items-stretch pt-4">
                 <Link 
                   to="/projects" 
-                  className="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-bold text-lg lg:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2 lg:space-x-3 shadow-lg"
+                  className="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-3 shadow-lg"
                 >
-                  <Eye className="h-6 w-6 lg:h-7 lg:w-7 group-hover:rotate-12 transition-transform duration-300" />
+                  <Eye className="h-7 w-7 group-hover:rotate-12 transition-transform duration-300" />
                   <span>View Projects</span>
-                  <ArrowRight className="h-6 w-6 lg:h-7 lg:w-7 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="h-7 w-7 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
                 <Link 
                   to="/contact" 
-                  className="group border-2 border-gray-300 hover:border-primary-500 text-gray-700 hover:text-primary-600 px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-bold text-lg lg:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 lg:space-x-3 bg-white/90 backdrop-blur-sm"
+                  className="group border-2 border-gray-300 hover:border-primary-500 text-gray-700 hover:text-primary-600 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-3 bg-white/90 backdrop-blur-sm"
                 >
-                  <MessageCircle className="h-6 w-6 lg:h-7 lg:w-7 group-hover:rotate-12 transition-transform duration-300" />
+                  <MessageCircle className="h-7 w-7 group-hover:rotate-12 transition-transform duration-300" />
                   <span>Get Quote</span>
                 </Link>
               </div>
