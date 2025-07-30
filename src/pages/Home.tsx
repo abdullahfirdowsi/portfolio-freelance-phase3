@@ -67,7 +67,7 @@ const Home = () => {
   return (
     <div className="animate-fade-in overflow-hidden">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 section-padding overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 overflow-hidden">
         {/* Subtle Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary-100/30 to-primary-200/20 rounded-full blur-3xl"></div>
@@ -75,45 +75,45 @@ const Home = () => {
         </div>
         
         <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[600px]">
-            <div className="animate-slide-up space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center text-center lg:text-left py-12 md:py-0 md:min-h-[600px]">
+            <div className="animate-slide-up space-y-8 pt-12 lg:pt-0">
               <div className="space-y-6">
-                <div className="inline-flex items-center space-x-2 bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold border border-primary-100">
-                  <Sparkles className="h-4 w-4" />
+                <div className="inline-flex items-center space-x-3 bg-primary-50 text-primary-700 px-5 py-3 rounded-full text-base font-semibold border border-primary-100">
+                  <Sparkles className="h-5 w-5" />
                   <span>Professional Project Development</span>
                 </div>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-tight">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-gray-900 leading-tight">
                   Get Your{' '}
                   <span className="bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 bg-clip-text text-transparent">
                     College Projects
                   </span>{' '}
                   Done
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl font-medium">
+                <p className="text-xl sm:text-2xl md:text-3xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
                   Mini, Major, IEEE Papers — Quick delivery with documentation.
                 </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-6 items-stretch sm:items-center">
+              <div className="flex flex-col sm:flex-row gap-6 items-stretch justify-center lg:justify-start">
                 <Link 
                   to="/projects" 
-                  className="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-3 shadow-lg"
+                  className="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-3 shadow-lg"
                 >
-                  <Eye className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
+                  <Eye className="h-7 w-7 group-hover:rotate-12 transition-transform duration-300" />
                   <span>View Projects</span>
-                  <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="h-7 w-7 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
                 <Link 
                   to="/contact" 
-                  className="group border-2 border-gray-300 hover:border-primary-500 text-gray-700 hover:text-primary-600 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-3 bg-white/90 backdrop-blur-sm"
+                  className="group border-2 border-gray-300 hover:border-primary-500 text-gray-700 hover:text-primary-600 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-3 bg-white/90 backdrop-blur-sm"
                 >
-                  <MessageCircle className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
+                  <MessageCircle className="h-7 w-7 group-hover:rotate-12 transition-transform duration-300" />
                   <span>Get Quote</span>
                 </Link>
               </div>
             </div>
             
-            <div className="animate-slide-up">
+            <div className="animate-slide-up hidden lg:block">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-purple-500/10 rounded-2xl blur-xl transform rotate-3"></div>
                 <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/60">
