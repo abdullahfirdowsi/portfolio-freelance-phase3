@@ -75,7 +75,7 @@ const Home = () => {
         </div>
         
         <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center text-center lg:text-left py-12 lg:py-20 xl:py-24 min-h-screen lg:min-h-[700px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center text-left py-12 lg:py-20 xl:py-24 min-h-screen lg:min-h-[700px]">
             <div className="animate-slide-up space-y-6 lg:space-y-8">
               <div className="space-y-4 lg:space-y-6">
                 <div className="inline-flex items-center space-x-2 lg:space-x-3 bg-primary-50 text-primary-700 px-4 py-2 lg:px-5 lg:py-3 rounded-full text-sm lg:text-base font-semibold border border-primary-100">
@@ -105,12 +105,12 @@ const Home = () => {
                   </h1>
                 </div>
                 
-                <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
+                <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl font-medium">
                   Mini, Major, IEEE Papers — Quick delivery with documentation.
                 </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 items-stretch justify-center lg:justify-start pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 items-stretch pt-4">
                 <Link 
                   to="/projects" 
                   className="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-bold text-lg lg:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2 lg:space-x-3 shadow-lg"
