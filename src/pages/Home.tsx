@@ -249,7 +249,7 @@ const Home = () => {
                   {[
                     { skill: "Python & AI/ML", level: "Good", color: "from-green-500 to-green-600" },
                     { skill: "Web Development", level: "Good", color: "from-green-500 to-green-600" },
-                    { skill: "Data Science", level: "Learning", color: "from-yellow-500 to-yellow-600" },
+                    { skill: "Data Science", level: "Learning", color: "from-primary-500 to-primary-600" },
                     { skill: "Documentation", level: "Good", color: "from-green-500 to-green-600" }
                   ].map((item, index) => (
                     <div key={index} className="flex justify-between items-center group">
