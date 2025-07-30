@@ -8,25 +8,25 @@ const Home = () => {
       icon: <Code className="h-8 w-8" />,
       title: "Mini Projects",
       description: "Quick turnaround projects perfect for semester submissions",
-      price: "₹2K - ₹5K"
+      price: "₹500 - ₹2.5K"
     },
     {
       icon: <Database className="h-8 w-8" />,
       title: "Major Projects",
       description: "Comprehensive final year projects with complete documentation",
-      price: "₹6K - ₹15K"
+      price: "₹3K - ₹5K"
     },
     {
       icon: <Brain className="h-8 w-8" />,
       title: "IEEE Papers",
       description: "Research papers and conference submissions",
-      price: "₹8K - ₹12K"
+      price: "₹6K - ₹8K"
     },
     {
       icon: <Globe className="h-8 w-8" />,
       title: "Web Development",
       description: "Full-stack web applications with modern frameworks",
-      price: "₹5K - ₹20K"
+      price: "₹5K - ₹10K"
     }
   ];
 

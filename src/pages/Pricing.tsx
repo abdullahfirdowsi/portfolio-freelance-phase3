@@ -17,7 +17,7 @@ const Pricing = () => {
     {
       _id: 1,
       name: "Mini Projects",
-      price: "₹5,00 - ₹2,500",
+      price: "₹500 - ₹2,500",
       description: "Perfect for semester assignments and quick submissions",
       features: [
         "Simple project implementation",
