@@ -95,8 +95,8 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, toggleSideba
           <div className="bg-gray-700 p-2 rounded-full">
             <User className="h-5 w-5" />
           </div>
-          <div>
-            <p className="text-sm font-medium">{user?.email}</p>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium truncate">{user?.email}</p>
             <p className="text-xs text-gray-400">Administrator</p>
           </div>
         </div>
