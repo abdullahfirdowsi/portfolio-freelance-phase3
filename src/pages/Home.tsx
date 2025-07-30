@@ -19,13 +19,13 @@ const Home = () => {
     {
       icon: <Brain className="h-8 w-8" />,
       title: "IEEE Papers",
-      description: "Research papers and conference submissions",
+      description: "Research papers and conference submissions with implementation",
       price: "₹6K - ₹8K"
     },
     {
       icon: <Globe className="h-8 w-8" />,
       title: "Web Development",
-      description: "Full-stack web applications with modern frameworks",
+      description: "Full-stack web applications with modern frameworks for your business needs",
       price: "₹5K - ₹10K"
     }
   ];
