@@ -67,7 +67,7 @@ const Home = () => {
   return (
     <div className="animate-fade-in overflow-hidden">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 section-padding overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 min-h-screen flex items-center py-12 sm:py-16 lg:py-24 pt-[72px] overflow-hidden">
         {/* Subtle Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary-100/30 to-primary-200/20 rounded-full blur-3xl"></div>
@@ -75,9 +75,9 @@ const Home = () => {
         </div>
         
         <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[600px]">
-            <div className="animate-slide-up space-y-8">
-              <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="animate-slide-up space-y-6 sm:space-y-8">
+              <div className="space-y-4 sm:space-y-6">
                 <div className="inline-flex items-center space-x-2 bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold border border-primary-100">
                   <Sparkles className="h-4 w-4" />
                   <span>Professional Project Development</span>
@@ -94,7 +94,7 @@ const Home = () => {
                 </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-6 items-stretch sm:items-center">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-stretch sm:items-center">
                 <Link 
                   to="/projects" 
                   className="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-3 shadow-lg"
@@ -113,7 +113,7 @@ const Home = () => {
               </div>
             </div>
             
-            <div className="animate-slide-up">
+            <div className="animate-slide-up hidden lg:block">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-purple-500/10 rounded-2xl blur-xl transform rotate-3"></div>
                 <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/60">
