@@ -68,7 +68,6 @@ const Home = () => {
     <div className="animate-fade-in overflow-hidden">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 section-padding overflow-hidden">
-      <section className="relative bg-gradient-to-br from-gray-50 via-primary-50/40 to-primary-100/30 section-padding overflow-hidden">
         {/* Subtle Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary-100/30 to-primary-200/20 rounded-full blur-3xl"></div>
