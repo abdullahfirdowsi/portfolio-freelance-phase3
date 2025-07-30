@@ -62,15 +62,15 @@ router.get('/dashboard-stats', auth, async (req, res) => {
     ]);
 
     // Calculate growth metrics (comparing last 30 days vs previous 30 days)
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-    const sixtyDaysAgo = new Date();
-    sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
+    const oneDayAgo = new Date();
+    oneDayAgo.setDate(oneDayAgo.getDate() - 1);
+    const twoDaysAgo = new Date();
+    twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
 
     const [recentContacts, previousContacts] = await Promise.all([
-      Contact.countDocuments({ createdAt: { $gte: thirtyDaysAgo } }),
+      Contact.countDocuments({ createdAt: { $gte: oneDayAgo } }),
       Contact.countDocuments({ 
-        createdAt: { $gte: sixtyDaysAgo, $lt: thirtyDaysAgo } 
+        createdAt: { $gte: twoDaysAgo, $lt: oneDayAgo } 
       })
     ]);
 
