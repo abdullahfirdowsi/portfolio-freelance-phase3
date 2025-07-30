@@ -87,8 +87,8 @@ export const sendContactConfirmationEmail = async (contactData) => {
             
             <p style="text-align: center; margin: 30px 0;">
               <strong>Need immediate assistance?</strong><br>
-              <a href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I%20just%20submitted%20a%20contact%20form%20and%20need%20immediate%20help." class="btn">💬 WhatsApp Me</a>
-              <a href="mailto:abdullahfirdowsi@gmail.com" class="btn">📧 Email Me</a>
+              <a href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I%20just%20submitted%20a%20contact%20form%20and%20need%20immediate%20help." class="btn" style="color: #fff; background: linear-gradient(135deg, #25d366, #128c7e); border: none;">💬 WhatsApp Me</a>
+              <a href="mailto:abdullahfirdowsi@gmail.com" class="btn" style="color: #fff; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: none;">📧 Email Me</a>
             </p>
             
             <div style="background-color: #eff6ff; padding: 15px; border-radius: 8px; margin: 20px 0;">
