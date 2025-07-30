@@ -72,21 +72,21 @@ const DashboardPage = () => {
       description: 'Create a new project for your portfolio',
       href: '/admin/projects/new',
       icon: FolderOpen,
-      color: 'bg-blue-500'
+      color: 'bg-primary-600'
     },
     {
       title: 'Add Pricing Tier',
       description: 'Create a new pricing package',
       href: '/admin/pricing/new',
       icon: DollarSign,
-      color: 'bg-green-500'
+      color: 'bg-secondary-600'
     },
     {
       title: 'View Contacts',
       description: 'Check new contact messages',
       href: '/admin/contacts',
       icon: MessageSquare,
-      color: 'bg-purple-500'
+      color: 'bg-primary-600'
     }
   ];
 
@@ -95,39 +95,39 @@ const DashboardPage = () => {
       title: 'Total Projects',
       value: dashboardData.overview.totalProjects,
       icon: FolderOpen,
-      color: 'text-blue-600 bg-blue-50',
+      color: 'text-primary-600 bg-primary-50',
       change: null
     },
     {
       title: 'Pricing Tiers',
       value: dashboardData.overview.totalPricingTiers,
       icon: DollarSign,
-      color: 'text-green-600 bg-green-50',
+      color: 'text-secondary-600 bg-secondary-50',
       change: null
     },
     {
       title: 'Contact Messages',
       value: dashboardData.overview.totalContacts,
       icon: MessageSquare,
-      color: 'text-purple-600 bg-purple-50',
+      color: 'text-primary-600 bg-primary-50',
       change: dashboardData.overview.contactGrowth
     },
     {
       title: 'Portfolio Views',
       value: dashboardData.overview.totalProjectViews,
       icon: Eye,
-      color: 'text-orange-600 bg-orange-50',
+      color: 'text-secondary-600 bg-secondary-50',
       change: null
     }
   ];
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'new': return <AlertCircle className="h-4 w-4 text-blue-600" />;
+      case 'new': return <AlertCircle className="h-4 w-4 text-primary-600" />;
       case 'read': return <Eye className="h-4 w-4 text-gray-600" />;
-      case 'replied': return <CheckCircle className="h-4 w-4 text-green-600" />;
-      case 'in-progress': return <Clock className="h-4 w-4 text-yellow-600" />;
-      case 'completed': return <CheckCircle className="h-4 w-4 text-purple-600" />;
+      case 'replied': return <CheckCircle className="h-4 w-4 text-secondary-600" />;
+      case 'in-progress': return <Clock className="h-4 w-4 text-primary-600" />;
+      case 'completed': return <CheckCircle className="h-4 w-4 text-secondary-600" />;
       default: return <AlertCircle className="h-4 w-4 text-gray-600" />;
     }
   };
@@ -135,9 +135,9 @@ const DashboardPage = () => {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'urgent': return 'text-red-600 bg-red-50';
-      case 'high': return 'text-orange-600 bg-orange-50';
-      case 'medium': return 'text-yellow-600 bg-yellow-50';
-      case 'low': return 'text-green-600 bg-green-50';
+      case 'high': return 'text-primary-600 bg-primary-50';
+      case 'medium': return 'text-primary-600 bg-primary-50';
+      case 'low': return 'text-secondary-600 bg-secondary-50';
       default: return 'text-gray-600 bg-gray-50';
     }
   };
@@ -315,21 +315,21 @@ const DashboardPage = () => {
           <h2 className="text-xl font-semibold text-gray-900">Recent Activity Summary</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="text-center p-4 bg-blue-50 rounded-lg">
-            <div className="text-2xl font-bold text-blue-600">{dashboardData.overview.recentContactsCount}</div>
+          <div className="text-center p-4 bg-primary-50 rounded-lg">
+            <div className="text-2xl font-bold text-primary-600">{dashboardData.overview.recentContactsCount}</div>
             <div className="text-sm text-gray-600">New contacts (7 days)</div>
           </div>
-          <div className="text-center p-4 bg-green-50 rounded-lg">
-            <div className="text-2xl font-bold text-green-600">{dashboardData.overview.totalProjectViews}</div>
+          <div className="text-center p-4 bg-secondary-50 rounded-lg">
+            <div className="text-2xl font-bold text-secondary-600">{dashboardData.overview.totalProjectViews}</div>
             <div className="text-sm text-gray-600">Total project views</div>
           </div>
-          <div className="text-center p-4 bg-purple-50 rounded-lg">
+          <div className="text-center p-4 bg-primary-50 rounded-lg">
             <div className="flex items-center justify-center space-x-1">
-              <span className="text-2xl font-bold text-purple-600">
+              <span className="text-2xl font-bold text-primary-600">
                 {dashboardData.overview.contactGrowth >= 0 ? '+' : ''}{dashboardData.overview.contactGrowth}%
               </span>
               {dashboardData.overview.contactGrowth >= 0 ? (
-                <TrendingUp className="h-5 w-5 text-green-600" />
+                <TrendingUp className="h-5 w-5 text-secondary-600" />
               ) : (
                 <TrendingUp className="h-5 w-5 text-red-600 transform rotate-180" />
               )}

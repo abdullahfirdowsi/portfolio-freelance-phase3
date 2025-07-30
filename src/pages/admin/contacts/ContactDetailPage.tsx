@@ -130,11 +130,11 @@ const ContactDetailPage = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'new': return 'bg-blue-100 text-blue-800';
+      case 'new': return 'bg-primary-100 text-primary-800';
       case 'read': return 'bg-gray-100 text-gray-800';
-      case 'replied': return 'bg-green-100 text-green-800';
-      case 'in-progress': return 'bg-yellow-100 text-yellow-800';
-      case 'completed': return 'bg-purple-100 text-purple-800';
+      case 'replied': return 'bg-secondary-100 text-secondary-800';
+      case 'in-progress': return 'bg-primary-100 text-primary-800';
+      case 'completed': return 'bg-secondary-100 text-secondary-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
@@ -142,9 +142,9 @@ const ContactDetailPage = () => {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'urgent': return 'text-red-600 bg-red-50';
-      case 'high': return 'text-orange-600 bg-orange-50';
-      case 'medium': return 'text-yellow-600 bg-yellow-50';
-      case 'low': return 'text-green-600 bg-green-50';
+      case 'high': return 'text-primary-600 bg-primary-50';
+      case 'medium': return 'text-primary-600 bg-primary-50';
+      case 'low': return 'text-secondary-600 bg-secondary-50';
       default: return 'text-gray-600 bg-gray-50';
     }
   };
@@ -293,16 +293,12 @@ const ContactDetailPage = () => {
                     disabled={updating}
                     className="text-xs font-medium px-2.5 py-0.5 rounded-full border-0 focus:ring-2 focus:ring-primary-500 disabled:opacity-50"
                     style={{
-                      backgroundColor: getStatusColor(contact.status).includes('blue') ? '#dbeafe' : 
+                      backgroundColor: getStatusColor(contact.status).includes('primary') ? '#eff6ff' : 
                                      getStatusColor(contact.status).includes('gray') ? '#f3f4f6' :
-                                     getStatusColor(contact.status).includes('green') ? '#dcfce7' :
-                                     getStatusColor(contact.status).includes('yellow') ? '#fef3c7' :
-                                     getStatusColor(contact.status).includes('purple') ? '#f3e8ff' : '#f3f4f6',
-                      color: getStatusColor(contact.status).includes('blue') ? '#1e40af' : 
+                                     getStatusColor(contact.status).includes('secondary') ? '#f0fdf4' : '#f3f4f6',
+                      color: getStatusColor(contact.status).includes('primary') ? '#1d4ed8' : 
                              getStatusColor(contact.status).includes('gray') ? '#374151' :
-                             getStatusColor(contact.status).includes('green') ? '#166534' :
-                             getStatusColor(contact.status).includes('yellow') ? '#92400e' :
-                             getStatusColor(contact.status).includes('purple') ? '#7c3aed' : '#374151'
+                             getStatusColor(contact.status).includes('secondary') ? '#15803d' : '#374151'
                     }}
                   >
                     <option value="new">New</option>
@@ -325,13 +321,11 @@ const ContactDetailPage = () => {
                     className="text-xs font-medium px-2.5 py-0.5 rounded-full border-0 focus:ring-2 focus:ring-primary-500 disabled:opacity-50"
                     style={{
                       backgroundColor: getPriorityColor(contact.priority).includes('red') ? '#fef2f2' : 
-                                     getPriorityColor(contact.priority).includes('orange') ? '#fff7ed' :
-                                     getPriorityColor(contact.priority).includes('yellow') ? '#fefce8' :
-                                     getPriorityColor(contact.priority).includes('green') ? '#f0fdf4' : '#f9fafb',
+                                     getPriorityColor(contact.priority).includes('primary') ? '#eff6ff' :
+                                     getPriorityColor(contact.priority).includes('secondary') ? '#f0fdf4' : '#f9fafb',
                       color: getPriorityColor(contact.priority).includes('red') ? '#dc2626' : 
-                             getPriorityColor(contact.priority).includes('orange') ? '#ea580c' :
-                             getPriorityColor(contact.priority).includes('yellow') ? '#ca8a04' :
-                             getPriorityColor(contact.priority).includes('green') ? '#16a34a' : '#6b7280'
+                             getPriorityColor(contact.priority).includes('primary') ? '#1d4ed8' :
+                             getPriorityColor(contact.priority).includes('secondary') ? '#15803d' : '#6b7280'
                     }}
                   >
                     <option value="low">Low</option>
@@ -375,7 +369,7 @@ const ContactDetailPage = () => {
                 href={`https://wa.me/${contact.phone?.replace(/\D/g, '')}?text=Hi%20${contact.name},%20I%20received%20your%20inquiry%20about%20${contact.projectType}%20project.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-50 hover:bg-green-100 text-green-700 px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+                className="bg-secondary-50 hover:bg-secondary-100 text-secondary-700 px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
               >
                 <MessageSquare className="h-4 w-4" />
                 <span>WhatsApp</span>
@@ -421,7 +415,7 @@ const ContactDetailPage = () => {
             {contact.notes && contact.notes.length > 0 ? (
               <div className="space-y-3">
                 {contact.notes.map((note: any, index: number) => (
-                  <div key={index} className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                  <div key={index} className="bg-primary-50 border-l-4 border-primary-400 p-4 rounded-r-lg">
                     <p className="text-gray-800 whitespace-pre-wrap">{note.content}</p>
                     <p className="text-xs text-gray-500 mt-2">
                       Added by {note.addedBy} on {new Date(note.addedAt).toLocaleDateString('en-US', {

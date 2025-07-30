@@ -180,7 +180,7 @@ const PricingListPage = () => {
                 <div className="flex space-x-2">
                   <Link
                     to={`/admin/pricing/edit/${tier._id}`}
-                    className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 px-3 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-1"
+                    className="flex-1 bg-primary-50 hover:bg-primary-100 text-primary-600 px-3 py-2 rounded-lg font-medium transition-colors flex items-center justify-center space-x-1"
                   >
                     <Edit className="h-4 w-4" />
                     <span>Edit</span>

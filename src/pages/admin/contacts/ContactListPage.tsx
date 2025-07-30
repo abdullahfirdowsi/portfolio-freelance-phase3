@@ -64,11 +64,11 @@ const ContactListPage = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'new': return 'bg-blue-100 text-blue-800';
+      case 'new': return 'bg-primary-100 text-primary-800';
       case 'read': return 'bg-gray-100 text-gray-800';
-      case 'replied': return 'bg-green-100 text-green-800';
-      case 'in-progress': return 'bg-yellow-100 text-yellow-800';
-      case 'completed': return 'bg-purple-100 text-purple-800';
+      case 'replied': return 'bg-secondary-100 text-secondary-800';
+      case 'in-progress': return 'bg-primary-100 text-primary-800';
+      case 'completed': return 'bg-secondary-100 text-secondary-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
@@ -76,9 +76,9 @@ const ContactListPage = () => {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'urgent': return 'text-red-600';
-      case 'high': return 'text-orange-600';
-      case 'medium': return 'text-yellow-600';
-      case 'low': return 'text-green-600';
+      case 'high': return 'text-primary-600';
+      case 'medium': return 'text-primary-600';
+      case 'low': return 'text-secondary-600';
       default: return 'text-gray-600';
     }
   };
@@ -222,7 +222,7 @@ const ContactListPage = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
                         {contact.projectType}
                       </span>
                     </td>
@@ -246,7 +246,7 @@ const ContactListPage = () => {
                       <div className="flex space-x-2">
                         <Link
                           to={`/admin/contacts/${contact._id}`}
-                          className="text-blue-600 hover:text-blue-900 flex items-center space-x-1"
+                          className="text-primary-600 hover:text-primary-900 flex items-center space-x-1"
                         >
                           <Eye className="h-4 w-4" />
                           <span>View</span>
