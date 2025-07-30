@@ -61,7 +61,7 @@ router.get('/dashboard-stats', auth, async (req, res) => {
       { $sort: { count: -1 } }
     ]);
 
-    // Calculate growth metrics (comparing last 30 days vs previous 30 days)
+    // Calculate growth metrics (comparing last 24 hours vs previous 24 hours)
     const oneDayAgo = new Date();
     oneDayAgo.setDate(oneDayAgo.getDate() - 1);
     const twoDaysAgo = new Date();

@@ -334,7 +334,7 @@ const DashboardPage = () => {
                 <TrendingUp className="h-5 w-5 text-red-600 transform rotate-180" />
               )}
             </div>
-            <div className="text-sm text-gray-600">Contact growth (30 days)</div>
+            <div className="text-sm text-gray-600">Contact growth (24 hours)</div>
           </div>
         </div>
       </div>
