@@ -28,7 +28,7 @@ const Home = () => {
     {
       icon: <Globe className="h-8 w-8" />,
       title: "Web Development",
-      description: "Full-stack web applications with modern frameworks for your business needs",
+      description: "Full-stack web applications with modern frameworks",
       price: "₹5K - ₹10K",
       gradient: "from-primary-600 to-primary-700"
     }
