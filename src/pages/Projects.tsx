@@ -84,7 +84,7 @@ const Projects = () => {
           title: "Amazon E-Commerce Product Quality Analysis",
           category: "AI/ML",
           description: "Interactive website leveraging customer reviews and real-time product data to forecast Amazon product quality using LSTM model.",
-          techStack: ["Python", "LSTM", "Sentiment Analysis", "Scraper API", "Render"],
+          techStack: ["Python", "LSTM", "Scraper API", "Render"],
           price: "₹2,000",
           image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=400",
           features: ["Real-time data scraping", "Sentiment analysis", "LSTM prediction", "Interactive dashboard"]
