@@ -5,7 +5,7 @@ dotenv.config();
 
 // Create reusable transporter object using SMTP transport
 const createTransporter = () => {
-  return nodemailer.createTransport({
+  return nodemailer.createTransporter({
     host: process.env.EMAIL_HOST,
     port: parseInt(process.env.EMAIL_PORT) || 587,
     secure: process.env.EMAIL_SECURE === 'true', // true for 465, false for other ports
