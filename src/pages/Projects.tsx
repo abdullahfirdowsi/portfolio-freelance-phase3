@@ -281,7 +281,7 @@ const Projects = () => {
                     href={`https://wa.me/919943980796?text=Hi%20Abdullah,%20I'm%20interested%20in%20the%20${project.title}%20project.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2"
+                    className="bg-secondary-500 hover:bg-secondary-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2"
                   >
                     <WhatsAppIcon className="h-4 w-4" />
                     <span>Request This</span>
@@ -351,7 +351,7 @@ const Projects = () => {
                 href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I%20need%20a%20custom%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
+                className="bg-secondary-500 hover:bg-secondary-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 <span>Discuss Custom Project</span>

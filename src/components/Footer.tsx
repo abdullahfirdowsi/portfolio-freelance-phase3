@@ -34,7 +34,7 @@ const Footer = () => {
                 href="https://wa.me/919943980796"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-green-400 transition-colors"
+                className="text-gray-300 hover:text-secondary-400 transition-colors"
               >
                 <WhatsAppIcon className="h-5 w-5" />
               </a>

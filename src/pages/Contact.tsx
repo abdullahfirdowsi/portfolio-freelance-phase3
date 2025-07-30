@@ -445,8 +445,8 @@ const Contact = () => {
             </div>
 
             {/* WhatsApp CTA */}
-            <div className="bg-green-50 rounded-lg p-6 border border-green-200 text-center">
-              <WhatsAppIcon className="h-12 w-12 text-green-600 mx-auto mb-4" />
+            <div className="bg-secondary-50 rounded-lg p-6 border border-secondary-200 text-center">
+              <WhatsAppIcon className="h-12 w-12 text-secondary-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Need Immediate Help?
               </h3>
@@ -457,7 +457,7 @@ const Contact = () => {
                 href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I%20need%20immediate%20help%20with%20my%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center space-x-2"
+                className="bg-secondary-600 hover:bg-secondary-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center space-x-2"
               >
                 <WhatsAppIcon className="h-4 w-4 text-white" />
                 <span>WhatsApp Now</span>

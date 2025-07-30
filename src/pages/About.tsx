@@ -148,7 +148,7 @@ const About = () => {
                   href="https://wa.me/919943980796"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-green-600 transition-colors"
+                  className="text-gray-600 hover:text-secondary-600 transition-colors"
                 >
                   <WhatsAppIcon className="h-6 w-6" />
                 </a>
@@ -284,7 +284,7 @@ const About = () => {
                 href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I'd%20like%20to%20discuss%20a%20project%20with%20you."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                className="bg-secondary-500 hover:bg-secondary-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 <span>WhatsApp Me</span>
