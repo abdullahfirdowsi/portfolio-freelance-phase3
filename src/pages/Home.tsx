@@ -247,10 +247,10 @@ const Home = () => {
                 </h3>
                 <div className="space-y-6">
                   {[
-                    { skill: "Python & AI/ML", level: "Good", color: "from-primary-500 to-primary-600" },
-                    { skill: "Web Development", level: "Good", color: "from-secondary-500 to-secondary-600" },
-                    { skill: "Data Science", level: "Learning", color: "from-primary-600 to-primary-700" },
-                    { skill: "Documentation", level: "Good", color: "from-secondary-600 to-secondary-700" }
+                    { skill: "Python & AI/ML", level: "Good", color: "from-green-500 to-green-600" },
+                    { skill: "Web Development", level: "Good", color: "from-green-500 to-green-600" },
+                    { skill: "Data Science", level: "Learning", color: "from-yellow-500 to-yellow-600" },
+                    { skill: "Documentation", level: "Good", color: "from-green-500 to-green-600" }
                   ].map((item, index) => (
                     <div key={index} className="flex justify-between items-center group">
                       <span className="text-lg text-gray-700 font-semibold group-hover:text-gray-900 transition-colors duration-300">{item.skill}</span>
