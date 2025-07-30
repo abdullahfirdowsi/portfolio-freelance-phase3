@@ -123,18 +123,18 @@ const Home = () => {
                       <div className="text-gray-600 font-semibold text-sm">Projects Completed</div>
                     </div>
                     <div className="space-y-3">
-                      <div className="text-4xl font-black bg-gradient-to-r from-secondary-600 to-primary-600 bg-clip-text text-transparent flex items-center justify-center space-x-1">
+                      <div className="text-4xl font-black bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent flex items-center justify-center space-x-1">
                         <span>4</span>
                         <Star className="h-6 w-6 text-yellow-400 fill-current" />
                       </div>
                       <div className="text-gray-600 font-semibold text-sm">Client Rating</div>
                     </div>
                     <div className="space-y-3">
-                      <div className="text-4xl font-black bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">24/7</div>
+                      <div className="text-4xl font-black bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">24/7</div>
                       <div className="text-gray-600 font-semibold text-sm">Support Available</div>
                     </div>
                     <div className="space-y-3">
-                      <div className="text-4xl font-black bg-gradient-to-r from-secondary-600 to-primary-600 bg-clip-text text-transparent">95%</div>
+                      <div className="text-4xl font-black bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">95%</div>
                       <div className="text-gray-600 font-semibold text-sm">Success Rate</div>
                     </div>
                   </div>
