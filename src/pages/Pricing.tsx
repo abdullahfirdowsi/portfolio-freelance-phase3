@@ -17,7 +17,7 @@ const Pricing = () => {
     {
       _id: 1,
       name: "Mini Projects",
-      price: "₹2,000 - ₹5,000",
+      price: "₹5,00 - ₹2,500",
       description: "Perfect for semester assignments and quick submissions",
       features: [
         "Simple project implementation",
@@ -33,7 +33,7 @@ const Pricing = () => {
     {
       _id: 2,
       name: "Major Projects",
-      price: "₹6,000 - ₹15,000",
+      price: "₹3,000 - ₹5,000",
       description: "Comprehensive final year projects with complete documentation",
       features: [
         "Complete project development",
@@ -51,7 +51,7 @@ const Pricing = () => {
     {
       _id: 3,
       name: "IEEE Papers",
-      price: "₹8,000 - ₹12,000",
+      price: "₹5,000 - ₹8,000",
       description: "Research papers and conference submissions",
       features: [
         "Original research work",
@@ -71,32 +71,32 @@ const Pricing = () => {
   const addOns = [
     {
       name: "Project Report",
-      price: "₹500 - ₹1,000",
+      price: "₹200 - ₹500",
       description: "Detailed project documentation with proper formatting"
     },
     {
       name: "PPT Presentation",
-      price: "₹500 - ₹800",
+      price: "₹100 - ₹300",
       description: "Professional presentation slides for project defense"
     },
     {
       name: "Viva Preparation",
-      price: "₹1,000 - ₹2,000",
+      price: "₹100 - ₹200",
       description: "One-on-one session to prepare for project viva"
     },
     {
       name: "Video Explanation",
-      price: "₹800 - ₹1,500",
+      price: "₹300 - ₹500",
       description: "Detailed video walkthrough of your project"
     },
     {
       name: "Extra Revisions",
-      price: "₹300 - ₹500",
+      price: "₹100 - ₹250",
       description: "Additional revisions beyond included limit"
     },
     {
       name: "Rush Delivery",
-      price: "₹1,000 - ₹3,000",
+      price: "₹500 - ₹1,000",
       description: "50% faster delivery for urgent requirements"
     }
   ];
