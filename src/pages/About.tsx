@@ -2,32 +2,32 @@ import { GraduationCap, Award, Code, Github, Linkedin, Mail, MapPin, Phone, Exte
 import WhatsAppIcon from '../components/WhatsAppIcon';
 
 const About = () => {
-  const education = [
-    {
-      degree: "B.Tech - Artificial Intelligence and Data Science",
-      institution: "Karpagam College of Engineering, Coimbatore",
-      period: "2021 - 2025",
-      grade: "CGPA: 8.3"
-    },
-    {
-      degree: "Higher Secondary School (12th Grade)",
-      institution: "Sathya Saai Matric Hr Sec School, Pasar",
-      period: "2020 - 2021",
-      grade: "Percentage: 91%"
-    },
-    {
-      degree: "Secondary School (10th Grade)",
-      institution: "Senthil Matric Hr Sec School, Virudhachalam",
-      period: "2018 - 2019",
-      grade: "Percentage: 92%"
-    }
-  ];
+  // const education = [
+  //   {
+  //     degree: "B.Tech - Artificial Intelligence and Data Science",
+  //     institution: "Karpagam College of Engineering, Coimbatore",
+  //     period: "2021 - 2025",
+  //     grade: "CGPA: 8.3"
+  //   },
+  //   {
+  //     degree: "Higher Secondary School (12th Grade)",
+  //     institution: "Sathya Saai Matric Hr Sec School, Pasar",
+  //     period: "2020 - 2021",
+  //     grade: "Percentage: 91%"
+  //   },
+  //   {
+  //     degree: "Secondary School (10th Grade)",
+  //     institution: "Senthil Matric Hr Sec School, Virudhachalam",
+  //     period: "2018 - 2019",
+  //     grade: "Percentage: 92%"
+  //   }
+  // ];
 
   const experience = [
     {
-      role: "Software Engineer Trainee",
+      role: "Software Developer Trainee",
       company: "iLink Digital",
-      period: "Feb 2025 – Jun 2025",
+      period: "Feb 2025 – Present",
       description: "Working as a Generative AI Engineer in the Digital Experience and AI Business Unit, gaining hands-on experience in .NET, C#, Python and Angular for developing dynamic applications, while leveraging Azure Cloud Services for deployment, management, and scalability."
     },
     {
@@ -39,18 +39,17 @@ const About = () => {
   ];
 
   const skills = {
-    "Programming Languages": ["Python", "JavaScript", "HTML", "CSS", "R", "SQL"],
-    "Frameworks & Tools": ["Django", "React.js", "Streamlit", "GitHub", "VS Code", "Jupyter"],
-    "Data & AI": ["Machine Learning", "Deep Learning", "Data Analytics", "Data Visualization"],
-    "Databases & Cloud": ["MySQL", "MongoDB", "Power BI", "Tableau", "Google Colab"]
+    "Programming Languages": ["Python", "JavaScript", "HTML", "CSS", "SQL"],
+    "Frameworks & Tools": ["FastAPI", "Angular", "React.js", "Flask", "GitHub", "VS Code"],
+    "Data & AI": ["Machine Learning", "Natural Language Processing", "Generative AI", "LLM", "Agentic AI", "Data Analysis", "Data Visualization"],
+    "Databases & Cloud": ["MySQL", "MongoDB", "Power BI", "Tableau", "Qlik", "Google Colab", "Azure", "AWS", "Firebase", "Databricks", "Hadoop"],
   };
 
   const achievements = [
     "1st Place in Poster Presentation (NITT Vortex'23)",
     "1st Place in Paper Presentation (PSG Kriya'23)",
     "1st Place in Paper Presentation (BIT V-Prayukti'23)",
-    "Silver Idea Winner - Idea Presentation (StartupTN)",
-    "Published Research Paper in International Journal"
+    "Silver Idea Winner - Idea Presentation (StartupTN)"
   ];
 
   const certifications = [
@@ -58,7 +57,8 @@ const About = () => {
     "NPTEL Database Management System",
     "DataCamp Associate Data Analyst",
     "NVIDIA Fundamentals of Deep Learning",
-    "FreeCodeCamp Data Analysis with Python"
+    "FreeCodeCamp Data Analysis with Python",
+    "Microsoft Github Copilot for Developers"
   ];
 
   return (
@@ -67,7 +67,7 @@ const About = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            About Abdullah Firdowsi
+            About Me
           </h1>
           <p className="text-xl text-gray-600 mb-8">
             Passionate AI & Data Science Expert | Your Trusted Project Development Partner
@@ -88,7 +88,7 @@ const About = () => {
               <p>
                 My journey in technology began with a curiosity about how machines can learn and make decisions. 
                 This curiosity led me to explore various domains including machine learning, web development, 
-                data analysis, and research. Over the years, I've completed numerous projects and helped 500+ 
+                data analysis, and research. Over the years, I've completed numerous projects and helped 10+ 
                 students with their academic projects.
               </p>
               <p>
@@ -112,7 +112,7 @@ const About = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Code className="h-5 w-5 text-primary-600" />
-                <span className="text-gray-700">500+ Projects Completed</span>
+                <span className="text-gray-700">5+ Projects Completed</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Award className="h-5 w-5 text-primary-600" />
@@ -159,6 +159,7 @@ const About = () => {
         </div>
 
         {/* Education */}
+{/*         
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Education Background</h2>
           <div className="space-y-6">
@@ -177,7 +178,7 @@ const About = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Experience */}
         <div className="mb-16">
