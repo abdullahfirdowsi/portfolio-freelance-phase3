@@ -2,6 +2,7 @@ import express from 'express';
 import Project from '../models/Project.js';
 import Pricing from '../models/Pricing.js';
 import Contact from '../models/Contact.js';
+import { sendContactConfirmationEmail, sendAdminNotificationEmail } from '../utils/emailService.js';
 
 const router = express.Router();
 
@@ -95,6 +96,7 @@ router.post('/contact', async (req, res) => {
   const { name, email, phone, projectType, message } = req.body;
 
   try {
+    // Save contact to database
     const newContact = new Contact({
       name,
       email,
@@ -103,8 +105,45 @@ router.post('/contact', async (req, res) => {
       message,
     });
 
-    await newContact.save();
-    res.status(201).json({ message: 'Contact form submitted successfully!' });
+    const savedContact = await newContact.save();
+    
+    // Send confirmation email to user (non-blocking)
+    sendContactConfirmationEmail({
+      name,
+      email,
+      phone,
+      projectType,
+      message
+    }).then(result => {
+      if (result.success) {
+        console.log('✅ Confirmation email sent to user:', email);
+      } else {
+        console.error('❌ Failed to send confirmation email:', result.error);
+      }
+    }).catch(error => {
+      console.error('❌ Error in confirmation email process:', error);
+    });
+    
+    // Send notification email to admin (non-blocking)
+    sendAdminNotificationEmail({
+      name,
+      email,
+      phone,
+      projectType,
+      message
+    }).then(result => {
+      if (result.success) {
+        console.log('✅ Admin notification email sent');
+      } else {
+        console.error('❌ Failed to send admin notification:', result.error);
+      }
+    }).catch(error => {
+      console.error('❌ Error in admin notification process:', error);
+    });
+    
+    res.status(201).json({ 
+      message: 'Contact form submitted successfully! You will receive a confirmation email shortly.' 
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
