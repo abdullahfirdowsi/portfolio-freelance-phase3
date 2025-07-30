@@ -50,7 +50,7 @@ export const sendContactConfirmationEmail = async (contactData) => {
         <div class="container">
           <div class="header">
             <h1>Thank You for Your Inquiry!</h1>
-            <p>Abdullah Firdowsi - Project Development Specialist</p>
+            <p>Abdullah Firdowsi - Project Development</p>
           </div>
           
           <div class="content">
@@ -105,15 +105,12 @@ export const sendContactConfirmationEmail = async (contactData) => {
             <p>Looking forward to working with you!</p>
             
             <p>Best regards,<br>
-            <strong>Abdullah Firdowsi</strong><br>
-            <em>AI & Data Science Specialist</em><br>
-            📧 abdullahfirdowsi@gmail.com<br>
-            📱 +91-9943980796</p>
+            <strong>Abdullah Firdowsi</strong></p>
           </div>
           
           <div class="footer">
-            <p>© 2025 Abdullah Firdowsi | Project Development Specialist</p>
-            <p>This is an automated confirmation email. Please do not reply to this email.</p>
+            <p>© 2025 Abdullah Firdowsi | Project Development</p>
+            <p>This is an automated confirmation email.</p>
           </div>
         </div>
       </body>
@@ -160,11 +157,8 @@ Looking forward to working with you!
 
 Best regards,
 Abdullah Firdowsi
-AI & Data Science Specialist
-📧 abdullahfirdowsi@gmail.com
-📱 +91-9943980796
 
-© 2025 Abdullah Firdowsi | Project Development Specialist
+© 2025 Abdullah Firdowsi | Project Development
 This is an automated confirmation email.
     `;
 
