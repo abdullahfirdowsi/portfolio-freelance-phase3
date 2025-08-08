@@ -1,216 +1,206 @@
-import { GraduationCap, Award, Code, Github, Linkedin, Mail, MapPin, Phone, ExternalLink } from 'lucide-react';
-import WhatsAppIcon from '../components/WhatsAppIcon';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Code, Brain, Award, Globe, Users, Book, GraduationCap, Building, Trophy, Sparkles, Check, Star } from 'lucide-react';
 
 const About = () => {
-  // const education = [
-  //   {
-  //     degree: "B.Tech - Artificial Intelligence and Data Science",
-  //     institution: "Karpagam College of Engineering, Coimbatore",
-  //     period: "2021 - 2025",
-  //     grade: "CGPA: 8.3"
-  //   },
-  //   {
-  //     degree: "Higher Secondary School (12th Grade)",
-  //     institution: "Sathya Saai Matric Hr Sec School, Pasar",
-  //     period: "2020 - 2021",
-  //     grade: "Percentage: 91%"
-  //   },
-  //   {
-  //     degree: "Secondary School (10th Grade)",
-  //     institution: "Senthil Matric Hr Sec School, Virudhachalam",
-  //     period: "2018 - 2019",
-  //     grade: "Percentage: 92%"
-  //   }
-  // ];
-
-  const experience = [
+  const [education, setEducation] = useState([
     {
-      role: "Software Developer Trainee",
+      degree: "B.Tech in Computer Science and Engineering",
+      institution: "Karpagam College of Engineering",
+      year: "2021-2025",
+      achievements: [
+        "Graduated with distinction",
+        "Received multiple academic excellence awards",
+        "Active participant in technical clubs and workshops"
+      ]
+    }
+  ]);
+
+  const [experience, setExperience] = useState([
+    {
+      title: "Full Stack Developer",
       company: "iLink Digital",
-      period: "Feb 2025 – Present",
-      description: "Working as a Generative AI Engineer in the Digital Experience and AI Business Unit, gaining hands-on experience in .NET, C#, Python and Angular for developing dynamic applications, while leveraging Azure Cloud Services for deployment, management, and scalability."
+      duration: "2024 - Present",
+      description: "Developing and maintaining web applications using modern technologies",
+      achievements: [
+        "Led the development of multiple successful projects",
+        "Implemented AI-powered features",
+        "Optimized application performance",
+        "Mentored junior developers"
+      ]
     },
     {
-      role: "Power BI Intern",
-      company: "We & Data",
-      period: "May 2023",
-      description: "Contributed to developing practical skills in utilizing Microsoft Power BI to create engaging dashboards and worked on diverse projects to sharpen my skills to craft visualizations and interactive reports."
+      title: "AI/ML Intern",
+      company: "Tech Innovations",
+      duration: "2023 - 2024",
+      description: "Worked on AI and machine learning projects",
+      achievements: [
+        "Developed predictive models",
+        "Created data visualization tools",
+        "Published research papers"
+      ]
     }
-  ];
+  ]);
 
-  const skills = {
-    "Programming Languages": ["Python", "JavaScript", "HTML", "CSS", "SQL"],
-    "Frameworks & Tools": ["FastAPI", "Angular", "React.js", "Flask", "GitHub", "VS Code"],
-    "Data & AI": ["Machine Learning", "Natural Language Processing", "Generative AI", "LLM", "Agentic AI", "Data Analysis", "Data Visualization"],
-    "Databases & Cloud": ["MySQL", "MongoDB", "Power BI", "Tableau", "Qlik", "Google Colab", "Azure", "AWS", "Firebase", "Databricks", "Hadoop"],
-  };
+  const [achievements, setAchievements] = useState([
+    {
+      icon: <Trophy className="h-6 w-6" />,
+      title: "International AI Competition Winner",
+      description: "Won gold medal in AI challenge 2024",
+      date: "2024"
+    },
+    {
+      icon: <GraduationCap className="h-6 w-6" />,
+      title: "Research Publication",
+      description: "Published paper on AI optimization techniques",
+      date: "2024"
+    },
+    {
+      icon: <Star className="h-6 w-6" />,
+      title: "Top Contributor",
+      description: "Recognized as top contributor in open source community",
+      date: "2023"
+    }
+  ]);
 
-  const achievements = [
-    "1st Place in Poster Presentation (NITT Vortex'23)",
-    "1st Place in Paper Presentation (PSG Kriya'23)",
-    "1st Place in Paper Presentation (BIT V-Prayukti'23)",
-    "Silver Idea Winner - Idea Presentation (StartupTN)"
-  ];
-
-  const certifications = [
-    "Coursera Machine Learning Specialization",
-    "NPTEL Database Management System",
-    "DataCamp Associate Data Analyst",
-    "NVIDIA Fundamentals of Deep Learning",
-    "FreeCodeCamp Data Analysis with Python",
-    "Microsoft Github Copilot for Developers"
-  ];
+  const [skills, setSkills] = useState([
+    {
+      category: "Programming",
+      items: [
+        "JavaScript/TypeScript",
+        "Python",
+        "React",
+        "Node.js",
+        "MongoDB"
+      ]
+    },
+    {
+      category: "AI/ML",
+      items: [
+        "Machine Learning",
+        "Deep Learning",
+        "Natural Language Processing",
+        "Computer Vision"
+      ]
+    },
+    {
+      category: "Tools",
+      items: [
+        "Git",
+        "Docker",
+        "AWS",
+        "Jupyter",
+        "TensorFlow"
+      ]
+    }
+  ]);
 
   return (
-    <div className="section-padding animate-fade-in">
+    <div className="section-padding">
       <div className="container-max px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            About Me
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold border border-primary-100">
+            <Sparkles className="h-4 w-4" />
+            <span>About Me</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+            My Journey & Expertise
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
-           Your Trusted Project Development Partner
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Exploring the intersection of AI and web development
           </p>
         </div>
 
-        {/* Personal Introduction */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">My Story</h2>
-            <div className="space-y-4 text-gray-700">
-              <p>
-                I'm Abdullah Firdowsi, a passionate AI and Data Science enthusiast currently pursuing my B.Tech 
-                in Artificial Intelligence and Data Science from Karpagam College of Engineering, Coimbatore. 
-                With a strong academic background and hands-on experience in cutting-edge technologies, I've 
-                dedicated myself to helping fellow students achieve their academic goals.
-              </p>
-              <p>
-                My journey in technology began with a curiosity about how machines can learn and make decisions. 
-                This curiosity led me to explore various domains including machine learning, web development, 
-                data analysis, and research. 
-              </p>
-              <p>
-                What sets me apart is my commitment to not just delivering projects, but ensuring students 
-                understand the concepts and can confidently present their work. I believe in creating original, 
-                high-quality solutions that help students learn while achieving excellent grades.
-              </p>
-            </div>
+        {/* Experience Timeline */}
+        <section className="mb-24">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Professional Experience</h2>
+          <div className="space-y-8">
+            {experience.map((exp, index) => (
+              <div key={index} className="relative pl-8">
+                {/* Line */}
+                <div className="absolute left-0 top-0 h-full w-0.5 bg-gray-200"></div>
+                {/* Dot */}
+                <div className="absolute left-0 top-0 w-6 h-6 bg-primary-600 rounded-full shadow-lg"></div>
+                
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center space-x-3">
+                      <h3 className="text-xl font-bold text-gray-900">{exp.title}</h3>
+                      <span className="text-sm text-gray-600">{exp.duration}</span>
+                    </div>
+                    <span className="text-gray-500">{exp.company}</span>
+                  </div>
+                  <p className="text-gray-600 mb-4">{exp.description}</p>
+                  <div className="space-y-2">
+                    {exp.achievements.map((ach, i) => (
+                      <div key={i} className="flex items-start space-x-3">
+                        <Check className="h-4 w-4 text-primary-600" />
+                        <span className="text-gray-600">{ach}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-          
-          <div className="bg-primary-50 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Quick Facts</h3>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-primary-600" />
-                <span className="text-gray-700">Based in Coimbatore, India</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <GraduationCap className="h-5 w-5 text-primary-600" />
-                <span className="text-gray-700">B.Tech AI & Data Science Student</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Code className="h-5 w-5 text-primary-600" />
-                <span className="text-gray-700">5+ Projects Completed</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Award className="h-5 w-5 text-primary-600" />
-                <span className="text-gray-700">Multiple Competition Winner</span>
-              </div>
-            </div>
-            
-            <div className="mt-6 pt-6 border-t border-primary-200">
-              <h4 className="font-semibold text-gray-900 mb-3">Connect with me:</h4>
-              <div className="flex space-x-4">
-                <a
-                  href="https://github.com/abdullahfirdowsi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-primary-600 transition-colors"
-                >
-                  <Github className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/abdullahfirdowsi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-primary-600 transition-colors"
-                >
-                  <Linkedin className="h-6 w-6" />
-                </a>
-                <a
-                  href="mailto:abdullahfirdowsi@gmail.com"
-                  className="text-gray-600 hover:text-primary-600 transition-colors"
-                >
-                  <Mail className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://wa.me/919943980796"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-secondary-600 transition-colors"
-                >
-                  <WhatsAppIcon className="h-6 w-6" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
 
         {/* Education */}
-{/*         
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Education Background</h2>
-          <div className="space-y-6">
+        <section className="mb-24">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Education</h2>
+          <div className="space-y-8">
             {education.map((edu, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6 border-l-4 border-primary-600">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900">{edu.degree}</h3>
-                    <p className="text-gray-600">{edu.institution}</p>
-                  </div>
-                  <div className="mt-2 md:mt-0 text-right">
-                    <p className="text-primary-600 font-semibold">{edu.period}</p>
-                    <p className="text-gray-700">{edu.grade}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div> */}
-
-        {/* Experience */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Professional Experience</h2>
-          <div className="space-y-6">
-            {experience.map((exp, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md p-6">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900">{exp.role}</h3>
-                    <p className="text-primary-600 font-medium">{exp.company}</p>
+                    <h3 className="text-xl font-bold text-gray-900">{edu.degree}</h3>
+                    <p className="text-gray-600">{edu.institution}</p>
+                    <p className="text-sm text-gray-500">{edu.year}</p>
                   </div>
-                  <p className="text-gray-600 mt-2 md:mt-0">{exp.period}</p>
+                  <div className="flex space-x-4">
+                    {edu.achievements.map((ach, i) => (
+                      <span key={i} className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
+                        <Check className="h-4 w-4 mr-1.5" />
+                        {ach}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <p className="text-gray-700">{exp.description}</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
+
+        {/* Achievements */}
+        <section className="mb-24">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Achievements</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {achievements.map((ach, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  {ach.icon}
+                  <h3 className="text-xl font-bold text-gray-900">{ach.title}</h3>
+                </div>
+                <p className="text-gray-600 mb-4">{ach.description}</p>
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
+                  {ach.date}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Skills */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Technical Skills</h2>
+        <section className="mb-24">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Technical Skills</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {Object.entries(skills).map(([category, skillList], index) => (
+            {skills.map((category, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {skillList.map((skill, skillIndex) => (
-                    <span
-                      key={skillIndex}
-                      className="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-medium"
-                    >
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{category.category}</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {category.items.map((skill, i) => (
+                    <span key={i} className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
                       {skill}
                     </span>
                   ))}
@@ -218,86 +208,26 @@ const About = () => {
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Achievements */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Achievements & Awards</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="bg-secondary-50 rounded-lg p-6 border-l-4 border-secondary-500">
-                <div className="flex items-center space-x-3">
-                  <Award className="h-6 w-6 text-secondary-600" />
-                  <p className="text-gray-800 font-medium">{achievement}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Certifications */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Certifications</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {certifications.map((cert, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6 text-center">
-                <div className="text-primary-600 mb-3">
-                  <GraduationCap className="h-8 w-8 mx-auto" />
-                </div>
-                <p className="text-gray-800 font-medium">{cert}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Research Publication */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Research Publication</h2>
-          <div className="bg-white rounded-lg shadow-md p-8 text-center">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              "Energy of a graph associated with the Tamil Nadu District Map"
+        {/* Call to Action */}
+        <section className="text-center">
+          <div className="bg-primary-600 text-white rounded-lg p-8">
+            <h3 className="text-2xl font-bold mb-4">
+              Ready to Collaborate?
             </h3>
-            <p className="text-gray-600 mb-4">
-              Published in International Research Journal of Education and Technology
+            <p className="text-gray-200 mb-6">
+              I'm always open to new opportunities and interesting projects.
             </p>
-            <a
-              href="#"
-              className="inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium"
+            <Link
+              to="/contact"
+              className="inline-flex items-center space-x-2 px-6 py-3 rounded-lg bg-white text-primary-600 hover:bg-gray-100 transition-colors duration-200"
             >
-              <ExternalLink className="h-4 w-4" />
-              <span>View Publication</span>
-            </a>
+              <Sparkles className="h-5 w-5" />
+              <span>Get in Touch</span>
+            </Link>
           </div>
-        </div>
-
-        {/* Contact CTA */}
-        <div className="text-center">
-          <div className="bg-primary-600 text-white rounded-2xl p-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Let's Work Together!
-            </h2>
-            <p className="text-xl mb-6 opacity-90">
-              Ready to bring your project ideas to life? I'm here to help you succeed.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://wa.me/919943980796?text=Hi%20Abdullah,%20I'd%20like%20to%20discuss%20a%20project%20with%20you."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-secondary-500 hover:bg-secondary-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
-              >
-                <WhatsAppIcon className="h-5 w-5" />
-                <span>WhatsApp Me</span>
-              </a>
-              <a
-                href="/contact"
-                className="border-2 border-white text-white hover:bg-white hover:text-primary-600 px-8 py-4 rounded-lg font-semibold transition-all duration-300"
-              >
-                Send Email
-              </a>
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
     </div>
   );
